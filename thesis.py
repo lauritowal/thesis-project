@@ -1,6 +1,9 @@
 import gym
 import gym_jsbsim
 
-env = gym.make(ENV_ID)
+env = gym.make('JSBSim-HeadingControlTask-Cessna172P-Shaping.STANDARD-FG-v0')
 env.reset()
-state, reward, done, info = env.step(action)
+for _ in range(1000):
+    env.render('flightgear')
+    env.step(env.action_space.sample()) # take a random action
+env.close()
