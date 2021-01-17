@@ -1,7 +1,7 @@
 import gym
 import gym_jsbsim
 
-env = gym.make('JSBSim-HeadingControlTask-Cessna172P-Shaping.STANDARD-FG-v0')
+env = gym.make('JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-FG-v0')
 env.reset()
 for _ in range(1000):
     env.render('flightgear')
