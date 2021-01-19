@@ -3,8 +3,9 @@ import gym_jsbsim
 from gym_jsbsim.plotter_walt import PlotterWalt
 import numpy as np
 
-env = gym.make('JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-NoFG-v0')
-# env = gym.make('JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-FG-v0')
+
+# env = gym.make('JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-NoFG-v0')
+env = gym.make('JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-FG-v0')
 env.reset()
 
 pitch_data = []
@@ -18,7 +19,7 @@ def in_seconds(minutes):
 
 while time_step <= in_seconds(minutes=2):
     # env.render() # comment all render() for faster training
-    # env.render("flightgear")
+    env.render("flightgear")
     # print("env.action_space.sample()", env.action_space.sample())
     (pitch_rad, roll_rad, time_step), _, done, _ = env.step(env.action_space.sample()) # take a random action
 
