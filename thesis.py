@@ -21,7 +21,7 @@ def in_seconds(minutes):
 while time_step <= in_seconds(minutes=2):
     env.render() # comment render() for faster training
     print("env.action_space.sample()", env.action_space.sample())
-    action = np.array([360])
+    action = np.array([190])
     # sample = env.action_space.sample()
     (pitch_rad, roll_rad, heading_deg, time_step), _, done, _ = env.step(action) # take a random action
 
