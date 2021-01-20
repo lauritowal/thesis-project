@@ -10,6 +10,7 @@ env.reset()
 
 pitch_data = []
 roll_data = []
+heading_data = []
 time_steps = []
 time_step = 0
 minutes = 3
@@ -18,16 +19,18 @@ def in_seconds(minutes):
     return minutes * 60
 
 while time_step <= in_seconds(minutes=2):
-    # env.render() # comment all render() for faster training
-    env.render("flightgear")
-    # print("env.action_space.sample()", env.action_space.sample())
-    (pitch_rad, roll_rad, time_step), _, done, _ = env.step(env.action_space.sample()) # take a random action
+    env.render() # comment render() for faster training
+    print("env.action_space.sample()", env.action_space.sample())
+    action = np.array([360])
+    # sample = env.action_space.sample()
+    (pitch_rad, roll_rad, heading_deg, time_step), _, done, _ = env.step(action) # take a random action
 
     roll_data.append(np.rad2deg(roll_rad))
     pitch_data.append(np.rad2deg(pitch_rad))
     time_steps.append(time_step)
+    heading_data.append(heading_deg)
 
 plotter = PlotterWalt()
 print(time_step)
-plotter.plot(data=[roll_data, pitch_data], time=time_steps, titles=["roll", "pitch"])
+plotter.plot(data=[roll_data, pitch_data, heading_data], time=time_steps, titles=["roll", "pitch", "heading"])
 print("done")
