@@ -25,7 +25,7 @@ while time_step <= in_seconds(minutes=2):
 
     # sample = env.action_space.sample()
     state, reward, done, _ = env.step(action) # take a random action
-    aircraft_state, target_information, time_step = state
+    aircraft_state, target_information, wind_information, time_step = state
 
     action = np.array([target_information["target_heading_deg"]])
 
