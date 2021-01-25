@@ -29,9 +29,9 @@ while time_step <= in_seconds(minutes=2):
 
     action = np.array([target_information["relative_bearing_deg"]])
 
-    print("aircraft_state", aircraft_state)
+    '''print("aircraft_state", aircraft_state)
     print("target_information", target_information)
-    print("time_step", time_step)
+    print("time_step", time_step)'''
 
     '''roll_data.append(np.rad2deg(roll_rad))
     pitch_data.append(np.rad2deg(pitch_rad))
