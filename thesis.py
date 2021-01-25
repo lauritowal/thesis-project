@@ -27,7 +27,7 @@ while time_step <= in_seconds(minutes=2):
     state, reward, done, _ = env.step(action) # take a random action
     aircraft_state, target_information, time_step = state
 
-    action = np.array([target_information["relative_bearing_deg"]])
+    action = np.array([target_information["target_heading_deg"]])
 
     '''print("aircraft_state", aircraft_state)
     print("target_information", target_information)
