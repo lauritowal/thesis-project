@@ -5,7 +5,9 @@ import numpy as np
 
 
 # env = gym.make('JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-NoFG-v0')
-env = gym.make('JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-FG-v0')
+env = gym.make(id='JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-FG-v0',
+               jsbsim_path="/Users/walter/thesis_project/jsbsim",
+               flightgear_path="/Users/walter/thesis_project/FlightGear.app/Contents/MacOS")
 env.reset()
 
 pitch_data = []
@@ -27,16 +29,8 @@ while time_step <= in_seconds(minutes=2):
     state, reward, done, _ = env.step(action) # take a random action
     aircraft_state, target_information, wind_information, time_step = state
 
-    action = np.array([target_information["target_heading_deg"]])
-
-    '''print("aircraft_state", aircraft_state)
-    print("target_information", target_information)
-    print("time_step", time_step)'''
-
-    '''roll_data.append(np.rad2deg(roll_rad))
-    pitch_data.append(np.rad2deg(pitch_rad))
-    time_steps.append(time_step)
-    heading_data.append(heading_deg)'''
+    # action = np.array([target_information["target_heading_deg"]])
+    action = np.array([40])
 
 #plotter = PlotterWalt()
 #print(time_step)
