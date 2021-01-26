@@ -22,7 +22,7 @@ def in_seconds(minutes):
 
 action = np.array([0])
 while time_step <= in_seconds(minutes=2):
-    env.render() # comment render() for faster training
+    # env.render() # comment render() for faster training
     # print("env.action_space.sample()", env.action_space.sample())
 
     # sample = env.action_space.sample()
