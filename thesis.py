@@ -8,7 +8,8 @@ import numpy as np
 env = gym.make(id='JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-FG-v0',
                jsbsim_path="/Users/walter/thesis_project/jsbsim",
                flightgear_path="/Users/walter/thesis_project/FlightGear.app/Contents/MacOS")
-env.reset()
+state = env.reset()
+print(state[0]["lat"])
 
 pitch_data = []
 roll_data = []
