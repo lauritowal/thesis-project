@@ -3,13 +3,14 @@ import gym_jsbsim
 from gym_jsbsim.plotter_walt import PlotterWalt
 import numpy as np
 
-
 # env = gym.make('JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-NoFG-v0')
 env = gym.make(id='JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-FG-v0',
                jsbsim_path="/Users/walter/thesis_project/jsbsim",
-               flightgear_path="/Users/walter/thesis_project/FlightGear.app/Contents/MacOS")
+               flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 state = env.reset()
-print(state[0]["lat"])
+
+print("env.action_space.sample()", env.action_space.sample())
+print("env.observation_space.sample()", env.observation_space.sample())
 
 pitch_data = []
 roll_data = []
@@ -23,17 +24,9 @@ def in_seconds(minutes):
 
 action = np.array([0])
 while time_step <= in_seconds(minutes=2):
-    # env.render() # comment render() for faster training
-    # print("env.action_space.sample()", env.action_space.sample())
-
+    env.render()
     # sample = env.action_space.sample()
-    state, reward, done, _ = env.step(action) # take a random action
-    aircraft_state, target_information, wind_information, time_step = state
+    state, reward, done, _ = env.step(action)
+    target_heading_deg = state["target_heading_deg"]
+    action = np.array([target_heading_deg])
 
-    # action = np.array([target_information["target_heading_deg"]])
-    action = np.array([40])
-
-#plotter = PlotterWalt()
-#print(time_step)
-#plotter.plot(data=[roll_data, pitch_data, heading_data], time=time_steps, titles=["roll", "pitch", "heading"])
-#print("done")
