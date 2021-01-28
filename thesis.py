@@ -1,32 +1,53 @@
 import gym
 import gym_jsbsim
-from gym_jsbsim.plotter_walt import PlotterWalt
+from gym_jsbsim.plotter_walt import PlotterWalt, Map3DPlotter
 import numpy as np
 
-# env = gym.make('JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-NoFG-v0')
 env = gym.make(id='JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-FG-v0',
                jsbsim_path="/Users/walter/thesis_project/jsbsim",
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 state = env.reset()
-
+print("state", state)
 print("env.action_space.sample()", env.action_space.sample())
 print("env.observation_space.sample()", env.observation_space.sample())
 
-pitch_data = []
-roll_data = []
-heading_data = []
 time_steps = []
+aircraft_geo_lats = []
+aircraft_geo_longs = []
+aircraft_altitudes = []
 time_step = 0
 minutes = 3
 
-def in_seconds(minutes):
+def in_seconds(minutes: int) -> int:
     return minutes * 60
 
 action = np.array([0])
-while time_step <= in_seconds(minutes=2):
-    env.render()
+
+print("start...")
+while time_step <= in_seconds(minutes=1):
+    # env.render() # comment render for faster training
     # sample = env.action_space.sample()
     state, reward, done, _ = env.step(action)
+
+    aircraft_geo_longs.append(state["aircraft_long_deg"])
+    aircraft_geo_lats.append(state["aircraft_lat_deg"])
+    aircraft_altitudes.append(state["altitude_sl_ft"])
+
+    print(state["aircraft_long_deg"], state["aircraft_lat_deg"])
+
     target_heading_deg = state["target_heading_deg"]
     action = np.array([target_heading_deg])
 
+    time_steps.append(time_step)
+    time_step = state["time_step"] + 1
+
+print("done")
+print("plot...")
+
+data = [
+    aircraft_geo_longs,
+    aircraft_geo_lats,
+    aircraft_altitudes,
+    time_steps
+]
+Map3DPlotter().plot(data)
