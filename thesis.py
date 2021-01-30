@@ -3,13 +3,10 @@ import gym_jsbsim
 from gym_jsbsim.plotter_walt import PlotterWalt, Map3DPlotter
 import numpy as np
 
-env = gym.make(id='JSBSim-GuidanceTask-Cessna172P-Shaping.STANDARD-FG-v0',
+env = gym.make(id='Guidance-v0',
                jsbsim_path="/Users/walter/thesis_project/jsbsim",
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 state = env.reset()
-print("state", state)
-print("env.action_space.sample()", env.action_space.sample())
-print("env.observation_space.sample()", env.observation_space.sample())
 
 time_steps = []
 aircraft_geo_lats = []
