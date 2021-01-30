@@ -1,6 +1,5 @@
 import gym
-import gym_jsbsim
-from gym_jsbsim.plotter_walt import PlotterWalt, Map3DPlotter
+from gym_jsbsim.services.plotter import Map3DPlotter
 import numpy as np
 
 env = gym.make(id='Guidance-v0',
