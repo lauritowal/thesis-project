@@ -11,6 +11,7 @@ time_steps = []
 aircraft_geo_lats = []
 aircraft_geo_longs = []
 aircraft_altitudes = []
+track_angles = []
 rewards = []
 time_step = 0
 minutes = 3
@@ -22,7 +23,7 @@ action = np.array([0])
 
 print("start...")
 while time_step <= in_seconds(minutes=1):
-    #env.render("flightgear") # comment render for faster training
+    # env.render("flightgear") # comment render for faster training
 
     observation = env.step(action)
     print(observation)
@@ -31,10 +32,11 @@ while time_step <= in_seconds(minutes=1):
     aircraft_geo_longs.append(state["aircraft_long_deg"])
     aircraft_geo_lats.append(state["aircraft_lat_deg"])
     aircraft_altitudes.append(state["altitude_sl_ft"])
+    track_angles.append(state["track_angle_deg"])
     rewards.append(reward)
 
     target_heading_deg = state["target_heading_deg"]
-    action = np.array([target_heading_deg])
+    action = np.array([0])
 
     time_steps.append(time_step)
     time_step = state["time_step"] + 1
@@ -47,7 +49,7 @@ data = [
     aircraft_geo_lats,
     aircraft_altitudes,
     time_steps,
-    rewards
-
+    rewards,
+    track_angles
 ]
 Map3DPlotter().plot(data)
