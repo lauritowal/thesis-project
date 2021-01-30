@@ -22,8 +22,7 @@ action = np.array([0])
 
 print("start...")
 while time_step <= in_seconds(minutes=1):
-    # env.render() # comment render for faster training
-    # sample = env.action_space.sample()
+    env.render("flightgear") # comment render for faster training
     state, reward, done, _ = env.step(action)
 
     aircraft_geo_longs.append(state["aircraft_long_deg"])
