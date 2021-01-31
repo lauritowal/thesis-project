@@ -45,7 +45,7 @@ while time_step <= in_seconds(minutes=2):
 
     aircraft_v_easts.append(state["aircraft_v_east_fps"])
     aircraft_v_norths.append(state["aircraft_v_north_fps"])
-    aircraft_v_downs.append(-state["aircraft_v_down_fps"])
+    aircraft_v_downs.append( - state["aircraft_v_down_fps"]) # TODO: Sure it is minus here?
 
     track_angles.append(state["track_angle_deg"])
     rewards.append(reward)
@@ -56,20 +56,6 @@ while time_step <= in_seconds(minutes=2):
 print("done")
 print("plot...")
 
-data = [
-    aircraft_geo_longs,
-    aircraft_geo_lats,
-    aircraft_altitudes,
-    aircraft_v_downs,
-    aircraft_v_easts,
-    aircraft_v_norths,
-    time_steps,
-    rewards,
-    track_angles,
-    state["target_lat_deg"],
-    state["target_long_deg"],
-    state["target_altitude_ft"]
-]
 Map3DPlotter().plot(long=aircraft_geo_longs,
                     lat=aircraft_geo_lats,
                     altitude=aircraft_altitudes,
