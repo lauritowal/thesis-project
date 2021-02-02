@@ -1,6 +1,9 @@
 # Todos
 ## Now
-- Simple Training: Train an agent in Google Colab with stable baselines for fixed height (engines on), no wind, no obstacles to get from point A to B.
+- Displaying Long / Lat Boundaries in Plot
+- Add big negative reward for out of bounds
+- Simple Training: Train an agent in Google Colab with stable baselines for fixed height 
+(engines on), no wind, no obstacles to get from point A to B.
 
 ## Later
 - Add obstacles into state
