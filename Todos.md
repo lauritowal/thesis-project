@@ -1,7 +1,7 @@
 # Todos
 ## Now
-- Displaying Long / Lat Boundaries in Plot
 - Add big negative reward for out of bounds
+- Create Unit Tests for critical methods before training + manual tests
 - Simple Training: Train an agent in Google Colab with stable baselines for fixed height 
 (engines on), no wind, no obstacles to get from point A to B.
 
