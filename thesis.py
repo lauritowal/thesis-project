@@ -5,6 +5,7 @@ import numpy as np
 from gym.wrappers import FlattenObservation
 from matplotlib import pyplot as PLT
 
+NUM_EPISODES = 1
 
 def in_seconds(minutes: int) -> int:
     return minutes * 60
@@ -14,75 +15,72 @@ env = gym.make(id='Guidance-v0',
                max_episode_time_s=in_seconds(minutes=10),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
-state = env.reset() # TODO: get also info on reset?
-print("state", state)
+for episode in range(NUM_EPISODES):
+    state = env.reset() # TODO: get also info on reset?
+    print("state at start", state)
 
-time_steps = []
-aircraft_geo_lats = []
-aircraft_geo_longs = []
-aircraft_altitudes = []
+    sim_time_steps = []
+    aircraft_geo_lats = []
+    aircraft_geo_longs = []
+    aircraft_altitudes = []
 
-aircraft_v_easts = []
-aircraft_v_norths = []
-aircraft_v_downs = []
+    aircraft_v_easts = []
+    aircraft_v_norths = []
+    aircraft_v_downs = []
 
-track_angles = []
-rewards = []
-bounds: [gym_jsbsim.utils.GeoPosition] = []
-time_step = 0
-minutes = 3
+    track_angles = []
+    rewards = []
+    bounds: [gym_jsbsim.utils.GeoPosition] = []
+    sim_time_step = 0
+    t = 0
 
+    action = np.array([0])
 
-action = np.array([0])
-info=None
-print("start...")
+    print("start...")
 
-done_counter = 0
+    done_counter = 0
 
-images = []
-while True:
-    images.append(env.render("rgb_array"))
-    state, reward, done, info = env.step(action)
+    images = []
+    while True:
+        images.append(env.render("rgb_array"))
+        state, reward, done, info = env.step(action)
 
-    print("done", done)
+        print("done", done)
 
-    target_heading_deg = state["target_heading_deg"]
-    action = np.array([target_heading_deg])
+        target_heading_deg = state["target_heading_deg"]
+        action = np.array([target_heading_deg])
 
-    # diagram stuff
-    aircraft_geo_longs.append(info["aircraft_long_deg"])
-    aircraft_geo_lats.append(info["aircraft_lat_deg"])
-    aircraft_altitudes.append(info["altitude_sl_ft"])
+        # diagram stuff
+        aircraft_geo_longs.append(info["aircraft_long_deg"])
+        aircraft_geo_lats.append(info["aircraft_lat_deg"])
+        aircraft_altitudes.append(info["altitude_sl_ft"])
 
-    aircraft_v_easts.append(info["aircraft_v_east_fps"])
-    aircraft_v_norths.append(info["aircraft_v_north_fps"])
-    aircraft_v_downs.append(- info["aircraft_v_down_fps"])  # TODO: Sure it is minus here?
+        aircraft_v_easts.append(info["aircraft_v_east_fps"])
+        aircraft_v_norths.append(info["aircraft_v_north_fps"])
+        aircraft_v_downs.append(- info["aircraft_v_down_fps"])  # TODO: Sure it is minus here?
 
-    track_angles.append(state["aircraft_track_angle_deg"])
-    rewards.append(reward)
-    time_steps.append(time_step)
+        track_angles.append(state["aircraft_track_angle_deg"])
+        rewards.append(reward)
+        sim_time_steps.append(sim_time_step)
 
-    time_step = info["time_step"] + 1
+        sim_time_step = info["time_step"] + 1
+        t += 1
+        if done:
+            print("###########################")
+            print(f"done episode: {episode}")
+            print(f"episode time steps {t}")
+            print("simulation time", sim_time_step)
+            print("state", state)
+            print("###########################")
+            break
 
-    if done:
-        done_counter += 1
-        print("done")
-        print("time_step", time_step)
-        break
-
-# show last image with matplot
+# show last image with matplot for testing
 # PLT.imshow(images[-1]) # comment render for faster training
 # PLT.show()
 
 print("done")
-print("plot...")
-
-
-
-exit() ######
-
-
-
+exit() #########
+print("plot...") # for testing
 
 bound_points = []
 for point in info["bounds"].values():
@@ -96,7 +94,7 @@ MapPlotter().plot(long=aircraft_geo_longs,
                   v_downs=aircraft_v_downs,
                   v_easts=aircraft_v_easts,
                   v_norths=aircraft_v_norths,
-                  time=time_steps,
+                  time=sim_time_steps,
                   rewards=rewards,
                   track_angles=track_angles,
                   target_lat_deg=info["target_lat_deg"],
