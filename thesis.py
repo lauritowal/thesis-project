@@ -2,9 +2,6 @@ import gym
 import gym_jsbsim
 from gym_jsbsim.services.plotter import MapPlotter
 import numpy as np
-from gym.wrappers import FlattenObservation
-from matplotlib import pyplot as PLT
-import plotly.express as px
 
 import config
 
