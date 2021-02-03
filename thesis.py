@@ -2,8 +2,8 @@ import gym
 import gym_jsbsim
 from gym_jsbsim.services.plotter import MapPlotter
 import numpy as np
-
-import config
+import os
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) # This is your Project Root
 
 NUM_EPISODES = 1
 
@@ -82,9 +82,9 @@ for episode_counter in range(NUM_EPISODES):
             print("state", state)
             print("###########################")
 
-            video_file_name = f'{config.ROOT_DIR}/data/videos/episode_{episode_counter}'
-            gifs_file_name = f'{config.ROOT_DIR}/data/gifs/episode_{episode_counter}'
-            htmls_file_name = f'{config.ROOT_DIR}/data/htmls/episode_{episode_counter}'
+            video_file_name = f'{ROOT_DIR}/data/videos/episode_{episode_counter}'
+            gifs_file_name = f'{ROOT_DIR}/data/gifs/episode_{episode_counter}'
+            htmls_file_name = f'{ROOT_DIR}/data/htmls/episode_{episode_counter}'
 
             # MapPlotter().convert2gif(images=images, file_name=video_file_name) # Cleanup...
             MapPlotter().convert2video(images=images, file_name=gifs_file_name) # Cleanup...
