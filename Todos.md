@@ -1,10 +1,10 @@
 # Todos
 ## Now
-- Create video from rgb arrays (Javascript or OpenCV in Python)
+- Work on ORCA: https://stackoverflow.com/questions/55109736/i-use-colab-and-plotly-and-i-want-save-a-plotly-figure-how-to-install-plotly-o
 - Simple Training: Train an agent in Google Colab with RLLib for fixed height 
 (engines on), no wind, no obstacles to get from point A to B.
 - Create Unit Tests for critical methods before or while training + manual tests (While training...)
-- Steady Wind (Geschwindigkeit und Stärke) --> change on parameter on every episode onlye
+- Steady Wind (Geschwindigkeit und Stärke) --> change on parameter on every episode only
 
 ## Later
 - Consider direction of landing field (Landeplatzrichtung vs Landeplatzpunkt)
