@@ -4,6 +4,7 @@ from gym_jsbsim.services.plotter import MapPlotter
 import numpy as np
 from gym.wrappers import FlattenObservation
 from matplotlib import pyplot as PLT
+import plotly.express as px
 
 NUM_EPISODES = 1
 
@@ -12,12 +13,12 @@ def in_seconds(minutes: int) -> int:
 
 env = gym.make(id='Guidance-v0',
                jsbsim_path="/Users/walter/thesis_project/jsbsim",
-               max_episode_time_s=in_seconds(minutes=10),
+               max_episode_time_s=in_seconds(minutes=5),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
-for episode in range(NUM_EPISODES):
+for episode_counter in range(NUM_EPISODES):
     state = env.reset() # TODO: get also info on reset?
-    print("state at start", state)
+    # print("state at start", state)
 
     sim_time_steps = []
     aircraft_geo_lats = []
@@ -41,11 +42,14 @@ for episode in range(NUM_EPISODES):
     done_counter = 0
 
     images = []
+    images.append(env.render("rgb_array"))
+
     while True:
-        images.append(env.render("rgb_array"))
         state, reward, done, info = env.step(action)
 
-        print("done", done)
+        images.append(env.render("rgb_array"))
+
+        # print("info", info)
 
         target_heading_deg = state["target_heading_deg"]
         action = np.array([target_heading_deg])
@@ -67,19 +71,23 @@ for episode in range(NUM_EPISODES):
         t += 1
         if done:
             print("###########################")
-            print(f"done episode: {episode}")
+            print(f"done episode: {episode_counter}")
             print(f"episode time steps {t}")
             print("simulation time", sim_time_step)
             print("state", state)
             print("###########################")
+
+            file_name = f'episode_{episode_counter}'
+            MapPlotter().convert2video(images=images, file_name=file_name) # Cleanup...
             break
 
-# show last image with matplot for testing
-# PLT.imshow(images[-1]) # comment render for faster training
-# PLT.show()
+
+
+
+'''
+exit()
 
 print("done")
-exit() #########
 print("plot...") # for testing
 
 bound_points = []
@@ -101,4 +109,4 @@ MapPlotter().plot(long=aircraft_geo_longs,
                   target_long_deg=info["target_long_deg"],
                   target_altitude_ft=info["target_altitude_ft"],
                   bounds=zip(*bound_points))
-# '''
+#'''
