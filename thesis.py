@@ -12,7 +12,7 @@ def in_seconds(minutes: int) -> int:
 
 env = gym.make(id='Guidance-v0',
                jsbsim_path="/Users/walter/thesis_project/jsbsim",
-               max_episode_time_s=in_seconds(minutes=5),
+               max_episode_time_s=in_seconds(minutes=1),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
 for episode_counter in range(NUM_EPISODES):
