@@ -14,6 +14,18 @@ def env_creator(env_config):
                 max_episode_time_s=in_seconds(minutes=1),
                 flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
+
+env = gym.make(id='guidance-v0',
+               jsbsim_path="/Users/walter/thesis_project/jsbsim",
+               max_episode_time_s=in_seconds(minutes=1),
+               flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
+state = env.reset()
+
+print("env.observation_space", env.observation_space)
+print("env.observation_space.contains(state)", env.observation_space.contains(state))
+print("state", state)
+
+
 ## Register environment for rllib
 register_env("guidance-v0-rllib", env_creator)
 tune.run(TD3Trainer, config={"env":"guidance-v0-rllib"})
