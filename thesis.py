@@ -8,6 +8,8 @@ from gym_jsbsim.utils import in_seconds
 from ray import tune
 from ray.rllib.agents.ddpg import TD3Trainer
 from ray.tune import register_env
+from ray.tune.logger import pretty_print
+
 
 def env_creator(env_config):
     return GuidanceEnv(jsbsim_path="/Users/walter/thesis_project/jsbsim",
@@ -26,13 +28,7 @@ print("env.observation_space.contains(state)", env.observation_space.contains(st
 print("state", state)
 
 
-## Register environment for rllib
-register_env("guidance-v0-rllib", env_creator)
-tune.run(TD3Trainer, config={"env":"guidance-v0-rllib"})
 
-exit()
-
-'''
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) # This is your Project Root
 NUM_EPISODES = 1
@@ -42,15 +38,33 @@ env = gym.make(id='guidance-v0',
                max_episode_time_s=in_seconds(minutes=1),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
+## Register environment for rllib
+register_env("guidance-v0-rllib", env_creator)
+tune.run(TD3Trainer, config={"env":"guidance-v0-rllib"})
+trainer = TD3Trainer(env="guidance-v0-rllib")
+
+# Can optionally call trainer.restore(path) to load a checkpoint.
+
+for i in range(1000):
+   # Perform one iteration of training the policy with PPO
+   result = trainer.train()
+   print(pretty_print(result))
+
+   if i % 100 == 0:
+       checkpoint = trainer.save(checkpoint_dir="./checkpoints")
+       print("checkpoint saved at", checkpoint)
+exit()
+
+
 for episode_counter in range(NUM_EPISODES):
-    state, info = env.reset() # TODO: Common practice to get also info in reset?
+    state = env.reset() # TODO: Common practice to get also info in reset?
     # print("state at start", state)
 
-    bound_points = []
-    for point in info["bounds"].values():
-        lat, long = point.to_array()
-        bound_points.append([long, lat])
-    bound_points.append(bound_points[0])  # append first point twice for plotting... find a more elegant solution later...
+    # bound_points = []
+    # for point in info["bounds"].values():
+    #     lat, long = point.to_array()
+    #     bound_points.append([long, lat])
+    # bound_points.append(bound_points[0])  # append first point twice for plotting... find a more elegant solution later...
 
     sim_time_steps = []
     aircraft_geo_lats = []
@@ -87,19 +101,19 @@ for episode_counter in range(NUM_EPISODES):
         action = np.array([target_heading_deg])
 
         # diagram stuff
-        aircraft_geo_longs.append(info["aircraft_long_deg"])
-        aircraft_geo_lats.append(info["aircraft_lat_deg"])
-        aircraft_altitudes.append(info["altitude_sl_ft"])
-
-        aircraft_v_easts.append(info["aircraft_v_east_fps"])
-        aircraft_v_norths.append(info["aircraft_v_north_fps"])
-        aircraft_v_downs.append(- info["aircraft_v_down_fps"])  # TODO: Sure it is minus here?
+        # aircraft_geo_longs.append(info["aircraft_long_deg"])
+        # aircraft_geo_lats.append(info["aircraft_lat_deg"])
+        # aircraft_altitudes.append(info["altitude_sl_ft"])
+        #
+        # aircraft_v_easts.append(info["aircraft_v_east_fps"])
+        # aircraft_v_norths.append(info["aircraft_v_north_fps"])
+        # aircraft_v_downs.append(- info["aircraft_v_down_fps"])  # TODO: Sure it is minus here?
 
         track_angles.append(state["aircraft_track_angle_deg"])
         rewards.append(reward)
         sim_time_steps.append(sim_time_step)
 
-        sim_time_step = info["time_step"] + 1
+        # sim_time_step = info["time_step"] + 1
         t += 1
         if done:
             print("###########################")

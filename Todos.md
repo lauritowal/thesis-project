@@ -2,6 +2,7 @@
 ## Now
 - Simple Training: Train an agent in Google Colab with RLLib for fixed height
 (engines on), no wind, no obstacles to get from point A to B.
+- Checkout: https://github.com/ray-project/ray/issues/9123
 - Construct randomizer for episodes and params for each episode
 - Titze: To deacrease the training time
 --> try training in a small range first --> to increase getting reward fast... 
