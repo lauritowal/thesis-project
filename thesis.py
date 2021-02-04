@@ -1,16 +1,31 @@
 import gym
 import gym_jsbsim
+from gym_jsbsim.environment import GuidanceEnv
 from gym_jsbsim.services.plotter import MapPlotter
 import numpy as np
 import os
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) # This is your Project Root
+from gym_jsbsim.utils import in_seconds
+from ray import tune
+from ray.rllib.agents.ddpg import TD3Trainer
+from ray.tune import register_env
 
+def env_creator(env_config):
+    return GuidanceEnv(jsbsim_path="/Users/walter/thesis_project/jsbsim",
+                max_episode_time_s=in_seconds(minutes=1),
+                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
+
+## Register environment for rllib
+register_env("guidance-v0-rllib", env_creator)
+tune.run(TD3Trainer, config={"env":"guidance-v0-rllib"})
+
+exit()
+
+'''
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) # This is your Project Root
 NUM_EPISODES = 1
 
-def in_seconds(minutes: int) -> int:
-    return minutes * 60
-
-env = gym.make(id='Guidance-v0',
+env = gym.make(id='guidance-v0',
                jsbsim_path="/Users/walter/thesis_project/jsbsim",
                max_episode_time_s=in_seconds(minutes=1),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
@@ -88,23 +103,22 @@ for episode_counter in range(NUM_EPISODES):
 
             # MapPlotter().convert2gif(images=images, file_name=video_file_name) # Cleanup...
             MapPlotter().convert2video(images=images, file_name=gifs_file_name) # Cleanup...
-            '''MapPlotter().plot(long=aircraft_geo_longs,
-                              lat=aircraft_geo_lats,
-                              altitude=aircraft_altitudes,
-                              v_downs=aircraft_v_downs,
-                              v_easts=aircraft_v_easts,
-                              v_norths=aircraft_v_norths,
-                              time=sim_time_steps,
-                              rewards=rewards,
-                              track_angles=track_angles,
-                              target_lat_deg=info["target_lat_deg"],
-                              target_long_deg=info["target_long_deg"],
-                              target_altitude_ft=info["target_altitude_ft"],
-                              bounds=zip(*bound_points),
-                              file_name=htmls_file_name) #'''
+            # MapPlotter().plot(long=aircraft_geo_longs,
+            #                   lat=aircraft_geo_lats,
+            #                   altitude=aircraft_altitudes,
+            #                   v_downs=aircraft_v_downs,
+            #                   v_easts=aircraft_v_easts,
+            #                   v_norths=aircraft_v_norths,
+            #                   time=sim_time_steps,
+            #                   rewards=rewards,
+            #                   track_angles=track_angles,
+            #                   target_lat_deg=info["target_lat_deg"],
+            #                   target_long_deg=info["target_long_deg"],
+            #                   target_altitude_ft=info["target_altitude_ft"],
+            #                   bounds=zip(*bound_points),
+            #                   file_name=htmls_file_name)
             break
 
 print("done")
 print("plot...") # for testing
-
-
+# '''
