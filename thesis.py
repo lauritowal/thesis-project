@@ -62,11 +62,11 @@ for episode_counter in range(NUM_EPISODES):
     print("state at start", state)
 
 
-    # bound_points = []
-    # for point in info["bounds"].values():
-    #     lat, long = point.to_array()
-    #     bound_points.append([long, lat])
-    # bound_points.append(bound_points[0])  # append first point twice for plotting... find a more elegant solution later...
+    bound_points = []
+    for point in info["bounds"].values():
+        lat, long = point.to_array()
+        bound_points.append([long, lat])
+    bound_points.append(bound_points[0])  # append first point twice for plotting... find a more elegant solution later...
 
     sim_time_steps = []
     aircraft_geo_lats = []
@@ -130,22 +130,22 @@ for episode_counter in range(NUM_EPISODES):
             gifs_file_name = f'{ROOT_DIR}/data/gifs/episode_{episode_counter}'
             htmls_file_name = f'{ROOT_DIR}/data/htmls/episode_{episode_counter}'
 
-            # MapPlotter().convert2gif(images=images, file_name=video_file_name) # Cleanup...
-            MapPlotter().convert2video(images=images, file_name=gifs_file_name) # Cleanup...
-            # MapPlotter().plot(long=aircraft_geo_longs,
-            #                   lat=aircraft_geo_lats,
-            #                   altitude=aircraft_altitudes,
-            #                   v_downs=aircraft_v_downs,
-            #                   v_easts=aircraft_v_easts,
-            #                   v_norths=aircraft_v_norths,
-            #                   time=sim_time_steps,
-            #                   rewards=rewards,
-            #                   track_angles=track_angles,
-            #                   target_lat_deg=info["target_lat_deg"],
-            #                   target_long_deg=info["target_long_deg"],
-            #                   target_altitude_ft=info["target_altitude_ft"],
-            #                   bounds=zip(*bound_points),
-            #                   file_name=htmls_file_name)
+            # MapPlotter().convert2gif(images=images, file_name=gifs_file_name) # Cleanup...
+            # MapPlotter().convert2video(images=images, file_name=video_file_name) # Cleanup...
+            MapPlotter().plot(long=aircraft_geo_longs,
+                              lat=aircraft_geo_lats,
+                              altitude=aircraft_altitudes,
+                              v_downs=aircraft_v_downs,
+                              v_easts=aircraft_v_easts,
+                              v_norths=aircraft_v_norths,
+                              time=sim_time_steps,
+                              rewards=rewards,
+                              track_angles=track_angles,
+                              target_lat_deg=info["target_lat_deg"],
+                              target_long_deg=info["target_long_deg"],
+                              target_altitude_ft=info["target_altitude_ft"],
+                              bounds=zip(*bound_points),
+                              file_name=htmls_file_name)
             break
 
 print("done")

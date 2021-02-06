@@ -1,13 +1,17 @@
 # Todos
 ## Now
-- Better use Stable Baselines ?: https://stable-baselines.readthedocs.io/en/master/guide/rl_tips.html
-- Implement tips from Stable Baselines
+
+- Fix bugs
+- check spawn of target and boundaries for shorter time span like max 30-60sec first
+- Construct Randomizer for episodes and params for each episode
+- Titze: To decrease the training time
+--> try training in a small range first --> to increase getting reward fast... 
+
 - Simple Training: Train an agent in Google Colab fixed height
 (engines on), no wind, no obstacles to get from point A to B.
 - Checkout: https://github.com/ray-project/ray/issues/9123
-- Construct randomizer for episodes and params for each episode
-- Titze: To deacrease the training time
---> try training in a small range first --> to increase getting reward fast... 
+
+- Better use Stable Baselines ?: https://stable-baselines.readthedocs.io/en/master/guide/rl_tips.html
 - Create Unit Tests for critical methods before or while training + manual tests (While training...)
 - Steady Wind (Geschwindigkeit und Stärke) --> change on parameter on every episode only
 
