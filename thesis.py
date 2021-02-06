@@ -1,6 +1,7 @@
 import gym
 import gym_jsbsim
 from gym_jsbsim.environment import GuidanceEnv
+from gym_jsbsim.normalise_env import NormalizedEnv
 from gym_jsbsim.services.plotter import MapPlotter
 import numpy as np
 import os
@@ -10,25 +11,38 @@ from ray.rllib.agents.ddpg import TD3Trainer
 from ray.tune import register_env
 from ray.tune.logger import pretty_print
 
-
-def env_creator(env_config):
-    return GuidanceEnv(jsbsim_path="/Users/walter/thesis_project/jsbsim",
-                max_episode_time_s=in_seconds(minutes=1),
-                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
-
-
-env = gym.make(id='guidance-v0',
-               jsbsim_path="/Users/walter/thesis_project/jsbsim",
-               max_episode_time_s=in_seconds(minutes=1),
-               flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
-state = env.reset()
-
-print("env.observation_space", env.observation_space)
-print("env.observation_space.contains(state)", env.observation_space.contains(state))
-print("state", state)
-
-
-
+# def env_creator(env_config):
+#     return GuidanceEnv(jsbsim_path="/Users/walter/thesis_project/jsbsim",
+#                 max_episode_time_s=in_seconds(minutes=1),
+#                 flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
+#
+#
+# env = gym.make(id='guidance-v0',
+#                jsbsim_path="/Users/walter/thesis_project/jsbsim",
+#                max_episode_time_s=in_seconds(minutes=1),
+#                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
+# state = env.reset()
+#
+# print("env.observation_space", env.observation_space)
+# print("env.observation_space.contains(state)", env.observation_space.contains(state))
+# print("state", state)
+#
+# ## Register environment for rllib
+# register_env("guidance-v0-rllib", env_creator)
+# tune.run(TD3Trainer, config={"env":"guidance-v0-rllib"})
+# trainer = TD3Trainer(env="guidance-v0-rllib")
+#
+# # Can optionally call trainer.restore(path) to load a checkpoint.
+#
+# for i in range(1000):
+#    # Perform one iteration of training the policy with PPO
+#    result = trainer.train()
+#    print(pretty_print(result))
+#
+#    if i % 100 == 0:
+#        checkpoint = trainer.save(checkpoint_dir="./checkpoints")
+#        print("checkpoint saved at", checkpoint)
+# exit()
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) # This is your Project Root
 NUM_EPISODES = 1
@@ -38,23 +52,7 @@ env = gym.make(id='guidance-v0',
                max_episode_time_s=in_seconds(minutes=1),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
-## Register environment for rllib
-register_env("guidance-v0-rllib", env_creator)
-tune.run(TD3Trainer, config={"env":"guidance-v0-rllib"})
-trainer = TD3Trainer(env="guidance-v0-rllib")
-
-# Can optionally call trainer.restore(path) to load a checkpoint.
-
-for i in range(1000):
-   # Perform one iteration of training the policy with PPO
-   result = trainer.train()
-   print(pretty_print(result))
-
-   if i % 100 == 0:
-       checkpoint = trainer.save(checkpoint_dir="./checkpoints")
-       print("checkpoint saved at", checkpoint)
-exit()
-
+env = NormalizedEnv(env)
 
 for episode_counter in range(NUM_EPISODES):
     state = env.reset() # TODO: Common practice to get also info in reset?
