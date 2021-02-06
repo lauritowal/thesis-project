@@ -1,11 +1,14 @@
 import gym
 import gym_jsbsim
 from gym_jsbsim.environment import GuidanceEnv
-from gym_jsbsim.normalise_env import NormalizedEnv
+from gym_jsbsim.normalise_env import NormalizeStateEnv
 from gym_jsbsim.services.plotter import MapPlotter
 import numpy as np
 import os
 from gym_jsbsim.utils import in_seconds
+
+from gym.wrappers import FlattenObservation
+
 from ray import tune
 from ray.rllib.agents.ddpg import TD3Trainer
 from ray.tune import register_env
@@ -52,11 +55,12 @@ env = gym.make(id='guidance-v0',
                max_episode_time_s=in_seconds(minutes=1),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
-env = NormalizedEnv(env)
+env = NormalizeStateEnv(env=env)
 
 for episode_counter in range(NUM_EPISODES):
     state = env.reset() # TODO: Common practice to get also info in reset?
-    # print("state at start", state)
+    print("state at start", state)
+
 
     # bound_points = []
     # for point in info["bounds"].values():
@@ -91,12 +95,13 @@ for episode_counter in range(NUM_EPISODES):
     while True:
         state, reward, done, info = env.step(action)
 
+        ground_speed, aircraft_track_angle_deg, heading_to_target_deg, current_distance_to_target_m = state
+
         images.append(env.render("rgb_array"))
 
         # print("info", info)
 
-        target_heading_deg = state["target_heading_deg"]
-        action = np.array([target_heading_deg])
+        action = np.array([heading_to_target_deg])
 
         # diagram stuff
         # aircraft_geo_longs.append(info["aircraft_long_deg"])
@@ -107,7 +112,7 @@ for episode_counter in range(NUM_EPISODES):
         # aircraft_v_norths.append(info["aircraft_v_north_fps"])
         # aircraft_v_downs.append(- info["aircraft_v_down_fps"])  # TODO: Sure it is minus here?
 
-        track_angles.append(state["aircraft_track_angle_deg"])
+        track_angles.append(aircraft_track_angle_deg)
         rewards.append(reward)
         sim_time_steps.append(sim_time_step)
 
