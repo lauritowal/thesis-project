@@ -63,7 +63,7 @@ for episode_counter in range(NUM_EPISODES):
 
 
     bound_points = []
-    for point in info["bounds"].values():
+    for point in env.get_bounds().values():
         lat, long = point.to_array()
         bound_points.append([long, lat])
     bound_points.append(bound_points[0])  # append first point twice for plotting... find a more elegant solution later...
@@ -104,13 +104,13 @@ for episode_counter in range(NUM_EPISODES):
         action = np.array([heading_to_target_deg])
 
         # diagram stuff
-        # aircraft_geo_longs.append(info["aircraft_long_deg"])
-        # aircraft_geo_lats.append(info["aircraft_lat_deg"])
-        # aircraft_altitudes.append(info["altitude_sl_ft"])
-        #
-        # aircraft_v_easts.append(info["aircraft_v_east_fps"])
-        # aircraft_v_norths.append(info["aircraft_v_north_fps"])
-        # aircraft_v_downs.append(- info["aircraft_v_down_fps"])  # TODO: Sure it is minus here?
+        aircraft_geo_longs.append(info["aircraft_long_deg"])
+        aircraft_geo_lats.append(info["aircraft_lat_deg"])
+        aircraft_altitudes.append(info["altitude_sl_ft"])
+
+        aircraft_v_easts.append(info["aircraft_v_east_fps"])
+        aircraft_v_norths.append(info["aircraft_v_north_fps"])
+        aircraft_v_downs.append(- info["aircraft_v_down_fps"])  # TODO: Sure it is minus here?
 
         track_angles.append(aircraft_track_angle_deg)
         rewards.append(reward)
@@ -126,12 +126,13 @@ for episode_counter in range(NUM_EPISODES):
             print("state", state)
             print("###########################")
 
-            video_file_name = f'{ROOT_DIR}/data/videos/episode_{episode_counter}'
-            gifs_file_name = f'{ROOT_DIR}/data/gifs/episode_{episode_counter}'
-            htmls_file_name = f'{ROOT_DIR}/data/htmls/episode_{episode_counter}'
-
-            # MapPlotter().convert2gif(images=images, file_name=gifs_file_name) # Cleanup...
+            # video_file_name = f'{ROOT_DIR}/data/videos/episode_{episode_counter}'
             # MapPlotter().convert2video(images=images, file_name=video_file_name) # Cleanup...
+
+            # gifs_file_name = f'{ROOT_DIR}/data/gifs/episode_{episode_counter}'
+            # MapPlotter().convert2gif(images=images, file_name=gifs_file_name) # Cleanup...
+
+            htmls_file_name = f'{ROOT_DIR}/data/htmls/episode_{episode_counter}'
             MapPlotter().plot(long=aircraft_geo_longs,
                               lat=aircraft_geo_lats,
                               altitude=aircraft_altitudes,
@@ -145,7 +146,8 @@ for episode_counter in range(NUM_EPISODES):
                               target_long_deg=info["target_long_deg"],
                               target_altitude_ft=info["target_altitude_ft"],
                               bounds=zip(*bound_points),
-                              file_name=htmls_file_name)
+                              file_name=htmls_file_name,
+                              show=True)
             break
 
 print("done")
