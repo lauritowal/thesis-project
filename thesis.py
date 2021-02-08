@@ -69,12 +69,6 @@ for episode_counter in range(NUM_EPISODES):
     state = env.reset() # TODO: Common practice to get also info in reset?
     print("state at start", state)
 
-    # bound_points = []
-    # for point in env.get_bounds().values():
-    #     lat, long = point.to_array()
-    #     bound_points.append([long, lat])
-    # bound_points.append(bound_points[0])  # append first point twice for plotting... find a more elegant solution later...
-
     sim_time_steps = []
     aircraft_geo_lats = []
     aircraft_geo_longs = []
