@@ -56,7 +56,7 @@ env = gym.make(id='guidance-v0',
                max_episode_time_s=in_seconds(minutes=1),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
-env = NormalizeStateEnv(env=env)
+# env = NormalizeStateEnv(env=env)
 env.reset()
 image = env.render("rgb_array")
 # plt.imshow(image)
@@ -105,6 +105,8 @@ for episode_counter in range(NUM_EPISODES):
         images.append(env.render("rgb_array"))
 
         # print("info", info)
+
+        print("heading_to_target_deg", heading_to_target_deg)
 
         action = np.array([heading_to_target_deg])
 
