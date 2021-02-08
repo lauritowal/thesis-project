@@ -56,7 +56,7 @@ env = gym.make(id='guidance-v0',
                max_episode_time_s=in_seconds(minutes=1),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
-# env = NormalizeStateEnv(env=env)
+env = NormalizeStateEnv(env=env)
 env.reset()
 image = env.render("rgb_array")
 # plt.imshow(image)
@@ -68,7 +68,6 @@ print("env", env)
 for episode_counter in range(NUM_EPISODES):
     state = env.reset() # TODO: Common practice to get also info in reset?
     print("state at start", state)
-
     sim_time_steps = []
     aircraft_geo_lats = []
     aircraft_geo_longs = []
@@ -94,13 +93,13 @@ for episode_counter in range(NUM_EPISODES):
     while True:
         state, reward, done, info = env.step(action)
 
+        print("state", state)
+
         ground_speed, aircraft_track_angle_deg, heading_to_target_deg, current_distance_to_target_m = state
 
         images.append(env.render("rgb_array"))
 
         # print("info", info)
-
-        print("heading_to_target_deg", heading_to_target_deg)
 
         action = np.array([heading_to_target_deg])
 
