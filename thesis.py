@@ -7,67 +7,25 @@ import numpy as np
 import os
 from gym_jsbsim.utils import in_seconds
 import matplotlib.pyplot as plt
-
-from gym.wrappers import FlattenObservation
-
-from ray import tune
-from ray.rllib.agents.ddpg import TD3Trainer
-from ray.tune import register_env
-from ray.tune.logger import pretty_print
-
-# def env_creator(env_config):
-#     return GuidanceEnv(jsbsim_path="/Users/walter/thesis_project/jsbsim",
-#                 max_episode_time_s=in_seconds(minutes=1),
-#                 flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
-#
-#
-# env = gym.make(id='guidance-v0',
-#                jsbsim_path="/Users/walter/thesis_project/jsbsim",
-#                max_episode_time_s=in_seconds(minutes=1),
-#                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
-# state = env.reset()
-#
-# print("env.observation_space", env.observation_space)
-# print("env.observation_space.contains(state)", env.observation_space.contains(state))
-# print("state", state)
-#
-# ## Register environment for rllib
-# register_env("guidance-v0-rllib", env_creator)
-# tune.run(TD3Trainer, config={"env":"guidance-v0-rllib"})
-# trainer = TD3Trainer(env="guidance-v0-rllib")
-#
-# # Can optionally call trainer.restore(path) to load a checkpoint.
-#
-# for i in range(1000):
-#    # Perform one iteration of training the policy with PPO
-#    result = trainer.train()
-#    print(pretty_print(result))
-#
-#    if i % 100 == 0:
-#        checkpoint = trainer.save(checkpoint_dir="./checkpoints")
-#        print("checkpoint saved at", checkpoint)
-# exit()
+from PIL import Image
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) # This is your Project Root
 NUM_EPISODES = 1
 
 env = gym.make(id='guidance-v0',
                jsbsim_path="/Users/walter/thesis_project/jsbsim",
-               max_episode_time_s=in_seconds(minutes=1),
+               max_episode_time_s=in_seconds(minutes=5),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
-env = NormalizeStateEnv(env=env)
+# env = NormalizeStateEnv(env=env)
 env.reset()
 image = env.render("rgb_array")
 # plt.imshow(image)
 # plt.show()
 
-
-print("env", env)
-
 for episode_counter in range(NUM_EPISODES):
     state = env.reset() # TODO: Common practice to get also info in reset?
-    print("state at start", state)
+    # print("state at start", state)
     sim_time_steps = []
     aircraft_geo_lats = []
     aircraft_geo_longs = []
@@ -93,13 +51,13 @@ for episode_counter in range(NUM_EPISODES):
     while True:
         state, reward, done, info = env.step(action)
 
-        print("state", state)
+        # print("state", state)
 
         ground_speed, aircraft_track_angle_deg, heading_to_target_deg, current_distance_to_target_m = state
 
-        images.append(env.render("rgb_array"))
+        # env.render('flightgear')
 
-        # print("info", info)
+        images.append(env.render("rgb_array"))
 
         action = np.array([heading_to_target_deg])
 
@@ -116,6 +74,8 @@ for episode_counter in range(NUM_EPISODES):
         rewards.append(reward)
         sim_time_steps.append(sim_time_step)
 
+        print("reward", reward)
+
         # sim_time_step = info["time_step"] + 1
         t += 1
         if done:
@@ -123,11 +83,15 @@ for episode_counter in range(NUM_EPISODES):
             print(f"done episode: {episode_counter}")
             print(f"episode time steps {t}")
             print("simulation time", sim_time_step)
-            print("state", state)
+            print("rewards", np.sum(rewards))
+            # print("state", state)
             print("###########################")
 
-            video_file_name = f'{ROOT_DIR}/data/videos/episode_{episode_counter}'
-            MapPlotter.convert2video(images=images, file_name=video_file_name)
+            # video_file_name = f'{ROOT_DIR}/data/videos/episode_{episode_counter}'
+            # MapPlotter.convert2video(images=images, file_name=video_file_name)
+            if len(images) > 0:
+                im = Image.fromarray(images[-1])
+                im.save(f'{ROOT_DIR}/data/images/episode_{episode_counter}.png')
 
             # gifs_file_name = f'{ROOT_DIR}/data/gifs/episode_{episode_counter}'
             # MapPlotter().convert2gif(images=images, file_name=gifs_file_name) # Cleanup...
