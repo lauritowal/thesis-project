@@ -15,7 +15,7 @@ NUM_EPISODES = 1
 
 env = gym.make(id='guidance-v0',
                jsbsim_path="/Users/walter/thesis_project/jsbsim",
-               max_episode_time_s=in_seconds(minutes=5),
+               max_episode_time_s=1,
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
 env = NormalizeStateEnv(env=env)
