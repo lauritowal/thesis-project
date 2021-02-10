@@ -54,9 +54,9 @@ for episode_counter in range(NUM_EPISODES):
     while True:
         state, reward, done, info = env.step(action)
 
-        # print("state", state)
+        aircraft_track_angle_deg, heading_to_target_deg, current_distance_to_target_km = state
 
-        ground_speed, aircraft_track_angle_deg, heading_to_target_deg, current_distance_to_target_m = state
+        print("state", state)
 
         # env.render('flightgear')
 
