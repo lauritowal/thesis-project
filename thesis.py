@@ -1,5 +1,6 @@
 import gym
 import gym_jsbsim
+from gym_jsbsim.agents import RandomAgent
 from gym_jsbsim.environment import GuidanceEnv
 from gym_jsbsim.normalise_env import NormalizeStateEnv
 from gym_jsbsim.services.plotter import MapPlotter
@@ -17,7 +18,7 @@ env = gym.make(id='guidance-v0',
                max_episode_time_s=in_seconds(minutes=5),
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
-# env = NormalizeStateEnv(env=env)
+env = NormalizeStateEnv(env=env)
 env.reset()
 image = env.render("rgb_array")
 # plt.imshow(image)
@@ -48,6 +49,8 @@ for episode_counter in range(NUM_EPISODES):
     done_counter = 0
     images.append(env.render("rgb_array"))
 
+    agent = RandomAgent(action_space=env.action_space)
+
     while True:
         state, reward, done, info = env.step(action)
 
@@ -59,8 +62,10 @@ for episode_counter in range(NUM_EPISODES):
 
         images.append(env.render("rgb_array"))
 
-        action = np.array([heading_to_target_deg])
+        # action = np.array([heading_to_target_deg])
 
+        action = agent.act()
+        print(action)
         # diagram stuff
         aircraft_geo_longs.append(info["aircraft_long_deg"])
         aircraft_geo_lats.append(info["aircraft_lat_deg"])
