@@ -1,6 +1,7 @@
 import gym
 import gym_jsbsim
 from gym_jsbsim.agents import RandomAgent
+from gym_jsbsim.agents.agents import PerfectAgent
 from gym_jsbsim.environment import GuidanceEnv
 from gym_jsbsim.normalise_env import NormalizeStateEnv
 from gym_jsbsim.services.map_plotter import MapPlotter
@@ -31,31 +32,32 @@ for episode_counter in range(NUM_EPISODES):
     action = np.array([0])
     done_counter = 0
     images.append(env.render("rgb_array"))
-    agent = RandomAgent(action_space=env.action_space)
+    # agent = RandomAgent(action_space=env.action_space)
+    agent = PerfectAgent(env)
+    rewards = 0
     t = 0
     print("start...")
 
     while True:
         state, reward, done, info = env.step(action)
+        aircraft_track_angle_rad, heading_to_target_rad, current_distance_to_target_km = state
 
-        aircraft_track_angle_deg, heading_to_target_deg, current_distance_to_target_km = state
+        print("heading_to_target_rad", heading_to_target_rad)
 
-        print("state", state)
-
-        # env.render('flightgear')
-
-        images.append(env.render("rgb_array"))
-
+        # action = np.array([heading_to_target_rad])
         action = agent.act()
 
-        print("action", np.rad2deg(action))
-        print("reward", reward)
+        print("action", action)
 
+        images.append(env.render("rgb_array"))
+        rewards += reward
         t += 1
+
         if done:
             print("###########################")
             print(f"done episode: {episode_counter}")
-            print(f"episode time steps {t}")
+            print(f"episode time steps: {t}")
+            print(f"total reward: {rewards}")
             print("###########################")
 
             if len(images) > 0:

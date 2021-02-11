@@ -1,5 +1,6 @@
 # Todos
 ## Now
+- Revert math shit...
 - Discretize action ? 360° / 3° ? Or Instead of floats using 360 ints as actions? --> Makes it easier
 - Wait few seconds before starting training --> PID controller takes some time in the beginning to stabalize...
 - How to make sure that a target is reachable?
