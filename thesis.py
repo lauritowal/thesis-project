@@ -33,7 +33,7 @@ for episode_counter in range(NUM_EPISODES):
     done_counter = 0
     images.append(env.render("rgb_array"))
     # agent = RandomAgent(action_space=env.action_space)
-    agent = PerfectAgent(env)
+    agent = PerfectAgent(env=env)
     rewards = 0
     t = 0
     print("start...")
