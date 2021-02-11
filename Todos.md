@@ -1,5 +1,9 @@
 # Todos
 ## Now
+- Discretize action ? 360° / 3° ? Or Instead of floats using 360 ints as actions? --> Makes it easier
+- Wait few seconds before starting training --> PID controller takes some time in the beginning to stabalize...
+- How to make sure that a target is reachable?
+- Try the algorithm and the state on a very simplified environment...
 - Create Unit Tests for critical methods before or while training + manual tests (While training...) https://www.reddit.com/r/reinforcementlearning/comments/9sh77q/what_are_your_best_tips_for_debugging_rl_problems/e8p2as5/
 - Increase target radius at the beginning a lot --> reduce with time...
 - Construct Randomizer for episodes and params for each episode
