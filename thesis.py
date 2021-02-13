@@ -51,6 +51,9 @@ for episode_counter in range(NUM_EPISODES):
 
         images.append(env.render("rgb_array"))
         rewards += reward
+
+        print("reward", reward)
+
         t += 1
 
         if done:
