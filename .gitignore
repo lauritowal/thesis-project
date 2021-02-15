@@ -1,6 +1,5 @@
 FlightGear.app
 venv
 .idea/*
-videos
-gifs
-htmls
+data/*
+jsbsim

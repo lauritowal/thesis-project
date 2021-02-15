@@ -1,6 +1,9 @@
 # Todos
 ## Now
-- Try negative rewards
+- See how to get videos from RLLib on Google Colab or local fast test
+- Answer guy in chat
+- Try negative rewards in Colab
+- Curriculum Learning: https://bair.berkeley.edu/blog/2017/12/20/reverse-curriculum/
 - Discretesize action ? 360° / 3° ? Or Instead of floats using 360 ints as actions? --> Makes it easier
 - Wait few seconds before starting training --> PID controller takes some time in the beginning to stabalize...
 - How to make sure that a target is reachable?
