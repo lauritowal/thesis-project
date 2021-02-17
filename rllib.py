@@ -25,9 +25,9 @@ def my_train_fn(config, reporter):
     # agent.restore('/content/drive/MyDrive/checkpoints/checkpoint_701/checkpoint-701')
     agent = TD3Trainer(config=config, env="guidance-v0")
 
-    for i in range(1):
+    for i in range(100):
         result = agent.train()
-        if i % 1 == 0:
+        if i % 10 == 0:
             checkpoint = agent.save(checkpoint_dir="./data/checkpoints")
             print(pretty_print(result))
             print("checkpoint saved at", checkpoint)
