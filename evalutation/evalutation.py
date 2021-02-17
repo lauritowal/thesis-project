@@ -18,7 +18,7 @@ class Evalutation():
             sum_reward = self._run_one_episode(env, agent)
             history.append(sum_reward)
         avg_sum_reward = sum(history) / len(history)
-        print("\nbaseline cumulative reward: {:6.2}".format(avg_sum_reward))
+        print("\nbaseline cumulative reward: {:6.2}".format(avg_sum_reward))  # baseline cumulative reward: -1e+03
 
     def _run_one_episode(self, env, agent):
         env.reset()
