@@ -1,8 +1,11 @@
 # Todos
 ## Now
-- Check mean rewards: "In principle, this means that you can store, for example, episode return across many episodes, and aggregate the results to get the average episode return across stored values."
+- Adapt reward to include heading [Implemented, Working?: ]
+- Check mean rewards: + https://medium.com/distributed-computing-with-ray/anatomy-of-a-custom-environment-for-rllib-327157f269e5
+"In principle, this means that you can store, for example, episode return across many episodes, and aggregate the results to get the average episode return across stored values."
+- try training in a small range first --> to increase getting reward fast... 
+- Decrease max time for episodes (Currently at 5min)
 - Unit function for reward
---> try training in a small range first --> to increase getting reward fast... 
 - Increase target radius at the beginning a lot --> reduce with time...
 - Try positive reward when reaching target (1) ? 
 - Compare to random agent --> tensorboard performance...
