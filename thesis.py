@@ -1,14 +1,8 @@
 import gym
-import gym_jsbsim
-from gym_jsbsim.agents import RandomAgent
 from gym_jsbsim.agents.agents import PerfectAgent
-from gym_jsbsim.environment import GuidanceEnv
 from gym_jsbsim.normalise_env import NormalizeStateEnv
-from gym_jsbsim.services.map_plotter import MapPlotter
 import numpy as np
 import os
-from gym_jsbsim.utils import in_seconds
-import matplotlib.pyplot as plt
 from PIL import Image
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) # This is your Project Root
