@@ -9,8 +9,8 @@ and aggregate the results to get the average episode return across stored values
 - try training in a small range first --> to increase getting reward fast... [Implemented, Working?: ]
 - add simulation time to prints also [Implemented, Working?: ]
 
-- Penalize for going out of border? 
--- fix number in each time step for being outside
+- Penalize for going out of border:
+-- fix number in each time step for being outside [Implemented, Working?: ]
 -- maybe: higher number on each step if outside of boundaries 
 -- short time outside is okay, to much not...
 
