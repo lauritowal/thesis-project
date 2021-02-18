@@ -1,1 +1,0 @@
-# Contains image files from each episode

@@ -1,9 +1,19 @@
 # Todos
 ## Now
 - Adapt reward to include heading [Implemented, Working?: ]
-- Check mean rewards: + https://medium.com/distributed-computing-with-ray/anatomy-of-a-custom-environment-for-rllib-327157f269e5
-"In principle, this means that you can store, for example, episode return across many episodes, and aggregate the results to get the average episode return across stored values."
-- try training in a small range first --> to increase getting reward fast... 
+- Checkout evaluation of your trained algorithm with rollout [Implemented, Working?: ]
+- Check mean rewards for rllib algo on colab?: [Implemented, Working?: ]
+https://medium.com/distributed-computing-with-ray/anatomy-of-a-custom-environment-for-rllib-327157f269e5
+"In principle, this means that you can store, for example, episode return across many episodes, 
+and aggregate the results to get the average episode return across stored values." [Implemented, Working?: ]
+- try training in a small range first --> to increase getting reward fast... [Implemented, Working?: ]
+- add simulation time to prints also [Implemented, Working?: ]
+
+- Penalize for going out of border? 
+-- fix number in each time step for being outside
+-- maybe: higher number on each step if outside of boundaries 
+-- short time outside is okay, to much not...
+
 - Decrease max time for episodes (Currently at 5min)
 - Unit function for reward
 - Increase target radius at the beginning a lot --> reduce with time...
@@ -12,7 +22,6 @@
 
 - Increase simulation steps after action --> 10, 15 ? even higher?
 - Make a unit test for targets in 4-6 fixed places and see how the reward behaves for an random agent and a perfect agent 
-- Penalize for going out of border? -> maybe: higher number on each step if outside of boundaries --> short time outside is okay, to much not...
 - Curriculum Learning with raylib: https://bair.berkeley.edu/blog/2017/12/20/reverse-curriculum/
 - Wait few seconds before starting training --> PID controller takes some time in the beginning to stabalize...
 - https://www.reddit.com/r/reinforcementlearning/comments/9sh77q/what_are_your_best_tips_for_debugging_rl_problems/e8p2as5/
