@@ -4,9 +4,15 @@
 https://github.com/ray-project/ray/issues/6860
 https://github.com/ray-project/ray/blob/master/rllib/rollout.py#L33
 
+- aircraft should be close to target, but target shouldn't have initial position if headings are different 
+--> confuses the agent... move away a bit
+
+- Try normalization again?
+
 - Punish for needed time not distance
-- aircraft should be close to target, but target shouldn't have initial position if headings are different --> confuses the agent... move away a bit
-- Try positive rewards?
+
+- Try positive rewards again?
+
 - Try absolute position of aircraft and target + velocity of aircraft, heading angles of both
 - Remove distance reward? [Implemented, Working?: Seems to make it much (!) better... Check the numbers tomorrow]
 - Adapt reward to include heading [Implemented, Working?: ]
