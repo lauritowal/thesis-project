@@ -2,5 +2,6 @@
 --config "{\"env\": \"guidance-v0\"}"  \
 --run TD3  \
 --episodes 20 \
---no-render
+--no-render \
+--jsbsim_path "/Users/walter/thesis_project/jsbsim"
 #--video-dir /Users/walter/thesis_project/data/videos/

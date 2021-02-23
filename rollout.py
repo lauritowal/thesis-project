@@ -43,16 +43,13 @@ Example Usage via executable:
 # ModelCatalog.register_custom_model("pa_model", ParametricActionsModel)
 # register_env("pa_cartpole", lambda _: ParametricActionsCartPole(10))
 
-
+global_jsbsim_path = "/Users/walter/thesis_project/jsbsim"
 def env_creator(env_config=None):
     return NormalizeStateEnv(GuidanceEnv(
-        jsbsim_path="/Users/walter/thesis_project/jsbsim",
+        jsbsim_path=global_jsbsim_path,
         max_distance_km=4,
         max_target_distance_km=2,
         max_episode_time_s=60 * 5))
-
-
-register_env("guidance-v0", env_creator)
 
 
 class RolloutSaver:
@@ -197,6 +194,11 @@ def create_parser(parser_creator=None):
         "of a built-on algorithm (e.g. RLLib's DQN or PPO), or a "
         "user-defined trainable function or class registered in the "
         "tune registry.")
+    required_named.add_argument(
+        "--jsbsim_path",
+        type=str,
+        required=True,
+        help="The path to the jsbsim folder")
     required_named.add_argument(
         "--env", type=str, help="The gym environment to use.")
     parser.add_argument(
@@ -482,6 +484,10 @@ def rollout(agent,
 if __name__ == "__main__":
     parser = create_parser()
     args = parser.parse_args()
+
+    if args.jsbsim_path:
+        global_jsbsim_path = args.jsbsim_path
+        register_env("guidance-v0", env_creator)
 
     # Old option: monitor, use video-dir instead.
     if args.monitor:
