@@ -35,4 +35,10 @@ If using space rewards then they should be used a lot --> reward signals that co
 --> the faster a feedback is given after an action via a reward signal
 --> the fater the RL agents finds a way to the higher reward
 
- 
+Imitation Learning and Inverse RL are both fields where an agents learns shown reward functions
+
+Running the same algorithm with the same hyper params using 10 different seeds 
+and averaging performance over two splits of 5 seeds can lead to learning curves seemingly coming from different statistical distributions
+However, in many papers less than 5 seeds are used!
+https://openlab-flowers.inria.fr/t/how-many-random-seeds-should-i-use-statistical-power-analysis-in-deep-reinforcement-learning-experiments/457
+--> solution is to use more random seeds
