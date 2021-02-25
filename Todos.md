@@ -1,15 +1,16 @@
 # Todos
 ## Now
 
-
 (24.02)
-0) Fix bug on Colab
+- Add Stable Baselines Agent ?: https://stable-baselines.readthedocs.io/en/master/guide/rl_tips.html
+- Check again Debug guides from andyjones github
+- PPO (GPU version of PPO) instead of TD3 https://openai.com/blog/openai-baselines-ppo/ 
+
 2) Punish for needed time, not distance
 7) Try normalization for reward again?
 3) Try positive rewards again?
 - Increase simulation steps after action --> 10, 15 ? even higher?
 1) translate text for RL group
-- PPO2 (GPU version of PPO) instead of TD3 https://openai.com/blog/openai-baselines-ppo/ 
 
 - Decrease max time for episodes (Currently at 5min)
 --> 4min
@@ -33,7 +34,6 @@
 - Checkout: https://github.com/ray-project/ray/issues/9123
 
 
-- Better use Stable Baselines ?: https://stable-baselines.readthedocs.io/en/master/guide/rl_tips.html
 
 
 ## Later
