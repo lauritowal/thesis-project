@@ -14,9 +14,17 @@ from gym_jsbsim.normalise_env import NormalizeStateEnv
 from ray import tune
 import numpy as np
 
-def env_creator(env_config):
-    return GuidanceEnv(jsbsim_path="/Users/walter/thesis_project/jsbsim", max_episode_time_s=60 * 5)
 
+def in_seconds(minutes: int) -> int:
+    return minutes * 60
+
+
+def env_creator(env_config=None):
+    return NormalizeStateEnv(GuidanceEnv(
+        jsbsim_path="/Users/walter/thesis_project/jsbsim",
+        max_distance_km=4,
+        max_target_distance_km=2,
+        max_episode_time_s=60 * 5))
 
 register_env("guidance-v0", env_creator)
 
@@ -29,7 +37,7 @@ def my_train_fn(config, reporter):
         result = agent.train()
         if i % 1 == 0:
             checkpoint = agent.save(checkpoint_dir="./data/checkpoints")
-            print(pretty_print(result))
+            # print(pretty_print(result))
             print("checkpoint saved at", checkpoint)
     agent.stop()
 
