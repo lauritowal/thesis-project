@@ -25,19 +25,18 @@ def my_train_fn(config, reporter):
     # agent.restore('/content/drive/MyDrive/checkpoints/checkpoint_701/checkpoint-701')
     agent = TD3Trainer(config=config, env="guidance-v0")
 
-    for i in range(100):
+    for i in range(2):
         result = agent.train()
-        if i % 10 == 0:
+        if i % 1 == 0:
             checkpoint = agent.save(checkpoint_dir="./data/checkpoints")
             print(pretty_print(result))
             print("checkpoint saved at", checkpoint)
     agent.stop()
 
 
-class MyCallbacks(DefaultCallbacks):
+class CustomCallbacks(DefaultCallbacks):
     def on_episode_end(self, worker, base_env, episode, **kwargs):
         envs = base_env.get_unwrapped()
-
         env_counter = 0
         for env in envs:
             if hasattr(env, "render"):
@@ -46,6 +45,31 @@ class MyCallbacks(DefaultCallbacks):
                 image.save(f'./data/images/episode_{episode.episode_id}_env_{env_counter}.png')
 
             env_counter += 1
+        #def on_postprocess_trajectory(self, worker, episode, agent_id, policy_id, policies, postprocessed_batch, original_batches, **kwargs):
+        if "num_aircraft_out_of_bounds_metric" not in episode.custom_metrics:
+            episode.custom_metrics["num_aircraft_out_of_bounds_metric"] = 0
+        if "num_aircraft_at_target_metric" not in episode.custom_metrics:
+            episode.custom_metrics["num_aircraft_at_target_metric"] = 0
+        if "num_aircraft_not_at_target_neither_out_of_bounds_metric" not in episode.custom_metrics:
+            episode.custom_metrics["num_aircraft_not_at_target_neither_out_of_bounds_metric"] = 0
+
+        info = episode.last_info_for()
+
+        if info["is_aircraft_out_of_bounds"]:
+            episode.custom_metrics["num_aircraft_out_of_bounds_metric"] += 1
+            print(info["is_aircraft_out_of_bounds"])
+
+        if info["is_aircraft_at_target"]:
+            episode.custom_metrics["num_aircraft_at_target_metric"] += 1
+            print(info["is_aircraft_at_target"])
+
+        if not info["is_aircraft_at_target"] and not info["is_aircraft_out_of_bounds"]:
+            episode.custom_metrics["num_aircraft_not_at_target_neither_out_of_bounds_metric"] += 1
+
+        # print("num_aircraft_out_of_bounds_metric", episode.custom_metrics["num_aircraft_out_of_bounds_metric"])
+        # print("num_aircraft_at_target_metric", episode.custom_metrics["num_aircraft_at_target_metric"])
+        # print("num_aircraft_not_at_target_neither_out_of_bounds_metric", episode.custom_metrics["num_aircraft_not_at_target_neither_out_of_bounds_metric"])
+
 
 if __name__ == "__main__":
     ray.init()
@@ -58,7 +82,7 @@ if __name__ == "__main__":
         "framework": "tf",
         "eager_tracing": False,
         "monitor": True,
-        "callbacks": MyCallbacks,
+        "callbacks": CustomCallbacks,
     }
     resources = TD3Trainer.default_resource_request(config).to_json()
     tune.run(my_train_fn, resources_per_trial=resources, config=config)
