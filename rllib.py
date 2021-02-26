@@ -38,11 +38,21 @@ class CustomCallbacks(DefaultCallbacks):
     def on_episode_end(self, worker, base_env, episode, **kwargs):
         envs = base_env.get_unwrapped()
         env_counter = 0
+        info = episode.last_info_for()
+
         for env in envs:
             if hasattr(env, "render"):
                 rgb_array: np.array = env.render()
                 image: Image = Image.fromarray(rgb_array)
-                image.save(f'./data/images/episode_{episode.episode_id}_env_{env_counter}.png')
+
+                if info["is_aircraft_out_of_bounds"]:
+                    image.save(f'./data/images/out_of_bounds/episode_{episode.episode_id}_env_{env_counter}.png')
+
+                if info["is_aircraft_at_target"]:
+                    image.save(f'./data/images/reached_target/episode_{episode.episode_id}_env_{env_counter}.png')
+
+                if not info["is_aircraft_at_target"] and not info["is_aircraft_out_of_bounds"]:
+                    image.save(f'./data/images/other/episode_{episode.episode_id}_env_{env_counter}.png')
 
             env_counter += 1
         #def on_postprocess_trajectory(self, worker, episode, agent_id, policy_id, policies, postprocessed_batch, original_batches, **kwargs):
@@ -52,8 +62,6 @@ class CustomCallbacks(DefaultCallbacks):
             episode.custom_metrics["num_aircraft_at_target_metric"] = 0
         if "num_aircraft_not_at_target_neither_out_of_bounds_metric" not in episode.custom_metrics:
             episode.custom_metrics["num_aircraft_not_at_target_neither_out_of_bounds_metric"] = 0
-
-        info = episode.last_info_for()
 
         if info["is_aircraft_out_of_bounds"]:
             episode.custom_metrics["num_aircraft_out_of_bounds_metric"] += 1
