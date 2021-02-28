@@ -1,4 +1,22 @@
 # RL tipps 
+http://amid.fish/reproducing-deep-rl
+
+- Always commit to investigate when find confusion --> keep attention to small details!
+
+- Thinking a lot and experimenting a little is key in RL
+--> Form hypotheses about what could be wrong and try them out systematically...
+
+- keep a very detailed work log!
+
+- Before running think: What might go wrong for 5mins
+
+-- https://www.floydhub.com/
+
+- to be confident that something works with RL you need to test it with at least 10 different seeds!
+
+
+For policy gradient methods, I’ve found policy entropy in particular to be a good indicator of whether training is going anywhere - much more sensitive than per-episode rewards.
+
 # planning fallicy
 It mostly takes way more samples then you think it will
 Even for mujoco environments where there are no images involved it takes mostly 10^5-10^7 steps to learn
