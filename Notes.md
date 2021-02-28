@@ -1,6 +1,5 @@
 # RL tipps 
 http://amid.fish/reproducing-deep-rl
-
 - Always commit to investigate when find confusion --> keep attention to small details!
 
 - Thinking a lot and experimenting a little is key in RL
@@ -60,3 +59,7 @@ and averaging performance over two splits of 5 seeds can lead to learning curves
 However, in many papers less than 5 seeds are used!
 https://openlab-flowers.inria.fr/t/how-many-random-seeds-should-i-use-statistical-power-analysis-in-deep-reinforcement-learning-experiments/457
 --> solution is to use more random seeds
+
+## Interesting articles
+RLLIB Medium: https://towardsdatascience.com/ray-and-rllib-for-fast-and-parallel-reinforcement-learning-6d31ee21c96c
+https://towardsdatascience.com/deep-reinforcement-learning-and-hyperparameter-tuning-df9bf48e4bd2
