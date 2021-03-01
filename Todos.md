@@ -5,7 +5,8 @@
 (24.02)
 
 1) Consider direction of landing field (Landeplatzrichtung vs Landeplatzpunkt)
-- add policy entropy ... --> indicator see if training is going well...
+2) - add policy entropy ... --> indicator see if training is going well...
+
 2) Punish for needed time, not distance
 3) Try positive rewards again?
 - Increase simulation steps after action --> 10, 15 ? even higher?
@@ -18,7 +19,7 @@ you could try to remember the last n rewards and update a running estimate (empi
 https://www.reddit.com/r/reinforcementlearning/comments/k5bs27/reward_scaling/gehccz3/
 
 - Check how to save best agent in rllib
-
+- Check curiosity: https://www.youtube.com/watch?v=Cc5IZrC_7Ok&ab_channel=anyscale
 - Wait few seconds before starting training --> PID controller takes some time in the beginning to stabalize...
 
 - Try PPO (GPU version of PPO) instead of TD3 https://openai.com/blog/openai-baselines-ppo/ 
