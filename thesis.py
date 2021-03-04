@@ -5,6 +5,7 @@ import numpy as np
 import os
 from PIL import Image
 
+
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) # This is your Project Root
 NUM_EPISODES = 1
 
