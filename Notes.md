@@ -1,4 +1,10 @@
+# Aircraft stuff
+A standard rate turn is defined as a 3° per second turn, which completes a 360° turn in 2 minutes
 # RL tipps 
+
+- entropy tells us how random the actions of an agent are --> How much randomness is there in the policy.
+It should normally decrease over time
+
 http://amid.fish/reproducing-deep-rl
 - Always commit to investigate when find confusion --> keep attention to small details!
 
