@@ -1,21 +1,19 @@
 
 # Todos
 ## Now
-- Why is runway oscillating around 90°
-- Try to add error to state instead of angle of runway... or add also track angle of aircraft (not relative to target) [DONE]
-- Setup Floydhub
-- Write Titze [5.03]
-- Try PPO (GPU version of PPO) instead of TD3 https://openai.com/blog/openai-baselines-ppo/ 
-- Consider direction of landing field (Landeplatzrichtung vs Landeplatzpunkt)
--- pull + test latest
-- Read paper again Marius...
-- Check how to save best agent in rllib
+- Implement all from https://andyljones.com/posts/rl-debugging.html and then run again
+- Compare to TD3
 
 ## Later
-- Steady Wind (Geschwindigkeit und Stärke) --> change on parameter on every episode only
-
 - Train considering engines off and altitude
 - Add fix number of obstacles into state (first fix number of obstacles) 
+
+- Parallelization + Check how to save best agent in rllib
+- Implement own Algorithm?
+
+- Steady Wind (Geschwindigkeit und Stärke) --> change on parameter on every episode only
+
+
 - Train considering wind, engines off and altitude
 
 - Titze: Variable Obstacles 
@@ -27,9 +25,6 @@
 - Höhenabhängiger Wind --> dynamisches Flugmodel
 - Consider Floyd Hub
 4) Try absolute position of aircraft and target + velocity of aircraft, heading angles of both
-
-- Discretesize action ? 360° / 3° ? Or Instead of floats using 360 ints as actions? --> Makes it easier?
-
 
 - Punish for needed time, not distance
 - Try positive rewards again?
