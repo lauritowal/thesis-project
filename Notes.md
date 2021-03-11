@@ -2,6 +2,15 @@
 A standard rate turn is defined as a 3° per second turn, which completes a 360° turn in 2 minutes
 # RL tipps 
 
+ww — Today at 11:04 AM
+Wow, that's really cool! For the past year I have been sticking from IPython import embed; embed() into the code to debug
+Ariel — Today at 11:04 AM
+Huh, what is that?
+ww — Today at 11:05 AM
+In return for that neat tip, I recently found out that (at least on macs) you can option click in the terminal to make the cursor go where you want it to
+Followup tips are that when you are actually in the embed, you can use dir(obj) in python to see what methods / attributes an object has, and you can use the inspect module and see the call stack thru inspect.stack()
+Ah, so pretty close to using the default debugging in jupyterlab
+
 - entropy tells us how random the actions of an agent are --> How much randomness is there in the policy.
 It should normally decrease over time
 
