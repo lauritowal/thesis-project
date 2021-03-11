@@ -1,6 +1,6 @@
 import gym
 from gym_jsbsim.agents.agents import PerfectAgent
-from gym_jsbsim.normalise_env import NormalizeStateEnv
+from gym_jsbsim.wrappers.normalise_observation import NormalizeObservation
 import numpy as np
 import os
 from PIL import Image
@@ -14,7 +14,7 @@ env = gym.make(id='guidance-v0',
                max_episode_time_s=60,
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
-env = NormalizeStateEnv(env=env)
+env = NormalizeObservation(env=env)
 env.reset()
 image = env.render("rgb_array")
 # plt.imshow(image)

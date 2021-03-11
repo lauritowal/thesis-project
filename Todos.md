@@ -1,8 +1,21 @@
 
 # Todos
 ## Now
+
+- Code teilen und JSBSIM_Wrapper für Guidance ausrichten und pushen...
+
+- Impelement Stable Baselines again? But how to render images?
+
+
+- Normalize rewards + ask question in discord / discus.ray...
+- RUN TD3
+- Run PPO
+- Compare both
+
+
+
 - Implement all from https://andyljones.com/posts/rl-debugging.html and then run again
-- Compare to TD3
+
 
 ## Later
 - Train considering engines off and altitude

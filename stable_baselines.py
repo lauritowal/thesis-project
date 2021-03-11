@@ -1,21 +1,9 @@
-import os
-from ctypes import Union
-from typing import Optional, Callable, Tuple, List
-
 import gym
-from gym.wrappers import Monitor
-from gym_jsbsim.normalise_env import NormalizeStateEnv
-from gym_jsbsim.services.map_plotter import MapPlotter
+from gym_jsbsim.wrappers.normalise_observation import NormalizeObservation
 from stable_baselines3.common.noise import NormalActionNoise
 from stable_baselines3.common.callbacks import CheckpointCallback, EvalCallback, StopTrainingOnMaxEpisodes
-from stable_baselines3 import PPO, TD3
-from stable_baselines3.common.vec_env import VecEnv, sync_envs_normalization
-from stable_baselines3.ppo import MlpPolicy
-from stable_baselines3.common.env_util import make_vec_env
-import gym_jsbsim
+from stable_baselines3 import TD3
 import numpy as np
-from PIL import Image
-from matplotlib import pyplot as plt
 
 # Parallel environments
 env_kwargs = {
@@ -28,7 +16,7 @@ env_kwargs = {
 #                    env_kwargs=env_kwargs)
 
 env = gym.make('guidance-v0', **env_kwargs)
-env = NormalizeStateEnv(env=env)
+env = NormalizeObservation(env=env)
 
 checkpoint_callback = CheckpointCallback(save_freq=1000,
                                          save_path='./data/checkpoints',

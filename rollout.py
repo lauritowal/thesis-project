@@ -13,7 +13,7 @@ import shelve
 import ray
 import ray.cloudpickle as cloudpickle
 from gym_jsbsim import GuidanceEnv
-from gym_jsbsim.normalise_env import NormalizeStateEnv
+from gym_jsbsim.wrappers.normalise_observation import NormalizeObservation
 from ray.rllib.env import MultiAgentEnv
 from ray.rllib.env.base_env import _DUMMY_AGENT_ID
 from ray.rllib.env.env_context import EnvContext
@@ -45,7 +45,7 @@ Example Usage via executable:
 
 global_jsbsim_path = "/Users/walter/thesis_project/jsbsim"
 def env_creator(env_config=None):
-    return NormalizeStateEnv(GuidanceEnv(
+    return NormalizeObservation(GuidanceEnv(
         jsbsim_path=global_jsbsim_path,
         max_distance_km=4,
         max_target_distance_km=2,
