@@ -1,5 +1,7 @@
 # Aircraft stuff
 A standard rate turn is defined as a 3° per second turn, which completes a 360° turn in 2 minutes
+
+
 # RL tipps 
 
 ww — Today at 11:04 AM

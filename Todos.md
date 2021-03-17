@@ -2,22 +2,35 @@
 # Todos
 ## Now
 
-- Code teilen und JSBSIM_Wrapper für Guidance ausrichten und pushen...
+Try padding the distance at a specific point to concentrate on
+https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/
 
-- Impelement Stable Baselines again? But how to render images?
-
-
-- Normalize rewards + ask question in discord / discus.ray...
 - RUN TD3
 - Run PPO
 - Compare both
-
-
 
 - Implement all from https://andyljones.com/posts/rl-debugging.html and then run again
 
 
 ## Later
+- to n-vector first [DONE - klappt ganz gut, braucht etwas länger als bei distance + true bearing]
+https://pypi.org/project/nvector/
+https://en.wikipedia.org/wiki/N-vector
+Checkout https://en.wikipedia.org/wiki/N-vector
+https://en.wikipedia.org/wiki/Horizontal_position_representation
+
+- prepare code for jsbsim wrapper and push
+
+- Transform to Cartesian...
+lat, long -> x,y https://stackoverflow.com/questions/16266809/convert-from-latitude-longitude-to-x-y
+https://en.wikipedia.org/wiki/Equirectangular_projection
+and Cartesian
+Checkout --> https://github.com/geospace-code/pymap3d
+https://datascience.stackexchange.com/questions/13567/ways-to-deal-with-longitude-latitude-feature
+https://heartbeat.fritz.ai/working-with-geospatial-data-in-machine-learning-ad4097c7228d
+https://stackoverflow.com/questions/1185408/converting-from-longitude-latitude-to-cartesian-coordinates
+
+
 - Train considering engines off and altitude
 - Add fix number of obstacles into state (first fix number of obstacles) 
 
