@@ -2,6 +2,15 @@
 # Todos
 ## Now
 
+Try sparse reward only 
+
+- Try dense reward
+-- positive
+-- negative
+
+- Try sparse reward + HER 
+- Complete Code to push..
+
 Try padding the distance at a specific point to concentrate on
 https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/
 
