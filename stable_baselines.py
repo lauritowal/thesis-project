@@ -19,7 +19,7 @@ env = gym.make('guidance-v0', **env_kwargs)
 env = NormalizeObservation(env=env)
 
 checkpoint_callback = CheckpointCallback(save_freq=1000,
-                                         save_path='./data/checkpoints',
+                                         save_path='/Users/walter/thesis_project/data/checkpoints',
                                          name_prefix='rl_model')
 
 
