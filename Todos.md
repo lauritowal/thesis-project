@@ -1,14 +1,28 @@
-
 # Todos
 ## Now
 
-Try sparse reward only 
+- Simplify like kendo said
 
-- Try dense reward
+
+- Sparse Rewards work well with Ray TD3 for distance and bearing only... [works great... converges after 30 episodes]
+- Change again to observation with bearing and distance only for now [works great... converges after 30 episodes]
+- Make SB3 TD3 work for that [works great... converges after 20-30 episodes]
+- Make SB3 SAC work for that [default params --> seems to work very well...]
+- Make HER work with the best of the two above distance only and bearing [not working well]
+
+- Add runway and aircraft heading to the observation
+- Try Curriculum Learning --> runway angle adapts to 
+- Make HER work with the last point
+- Upload and cleanup repo + add Titze
+
+- Make sure there is enough time for turning 
+- limit aircraft action
+
+- Try reward shaping
+- Read Andrew NGs Paper for reward shaping
 -- positive
 -- negative
 
-- Try sparse reward + HER 
 - Complete Code to push..
 
 Try padding the distance at a specific point to concentrate on
