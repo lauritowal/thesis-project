@@ -1,6 +1,15 @@
 # Todos
 ## Now
 
+- Test Continous with x,y again...
+- Test Continous + Sparse
+
+- Upload your code
+- Share code with Titze
+
+LatLong -> to local reference system:
+https://stackoverflow.com/questions/16266809/convert-from-latitude-longitude-to-x-y
+
 - Simplify like kendo said
 
 
