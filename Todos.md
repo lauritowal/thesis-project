@@ -1,8 +1,9 @@
 # Todos
 ## Now
 
-- Test Continous with x,y again...
-- Test Continous + Sparse
+- Simplify even more
+- Curriculum Learning (close to airport, change heading of aircraft step by step...)
+
 
 - Upload your code
 - Share code with Titze
