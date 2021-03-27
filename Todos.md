@@ -1,6 +1,8 @@
 # Todos
 ## Now
 
+- Add Winkel adaptions to curriculum and phases also..
+
 - Simplify like kendo said
 
 
