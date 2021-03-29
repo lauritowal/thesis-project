@@ -487,7 +487,7 @@ if __name__ == "__main__":
 
     if args.jsbsim_path:
         global_jsbsim_path = args.jsbsim_path
-        register_env("guidance-v0", env_creator)
+        register_env("guidance-continuous-v0", env_creator)
 
     # Old option: monitor, use video-dir instead.
     if args.monitor:

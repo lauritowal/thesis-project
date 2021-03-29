@@ -1,10 +1,22 @@
 # Todos
 ## Now
 
-- Add Winkel adaptions to curriculum and phases also..
+- Write Custom Wrapper / Callback on Episode End for Environment
+- Create phases for environment
 
-- Simplify like kendo said
+- Mitschreiben der Ergebinsse von Curriculum Learning vs HER
 
+HER
+---
+- Try SB3 --> Parameter auto Tuning with SB3 Zoo for your custom env
+- Add angle adaptions to curriculum learning phases also..
+- Try with phases looking at the mean reward instead of reducing heading on every hit...
+- Try HER again
+
+- Try sin, cos again for algos
+
+- Read Andrew NGs paper about dense rewards and the HER paper...
+- Check paper about Helicopter
 
 - Sparse Rewards work well with Ray TD3 for distance and bearing only... [works great... converges after 30 episodes]
 - Change again to observation with bearing and distance only for now [works great... converges after 30 episodes]
@@ -13,29 +25,9 @@
 - Make HER work with the best of the two above distance only and bearing [not working well]
 
 - Add runway and aircraft heading to the observation
-- Try Curriculum Learning --> runway angle adapts to 
-- Make HER work with the last point
-- Upload and cleanup repo + add Titze
-
-- Make sure there is enough time for turning 
-- limit aircraft action
-
-- Try reward shaping
-- Read Andrew NGs Paper for reward shaping
--- positive
--- negative
-
-- Complete Code to push..
 
 Try padding the distance at a specific point to concentrate on
 https://www.machinecurve.com/index.php/2020/02/07/what-is-padding-in-a-neural-network/
-
-- RUN TD3
-- Run PPO
-- Compare both
-
-- Implement all from https://andyljones.com/posts/rl-debugging.html and then run again
-
 
 ## Later
 - to n-vector first [DONE - klappt ganz gut, braucht etwas länger als bei distance + true bearing]

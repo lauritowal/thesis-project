@@ -15,7 +15,7 @@ env_kwargs = {
 #                    n_envs=4,
 #                    env_kwargs=env_kwargs)
 
-env = gym.make('guidance-v0', **env_kwargs)
+env = gym.make('guidance-continuous-v0', **env_kwargs)
 env = NormalizeObservation(env=env)
 
 checkpoint_callback = CheckpointCallback(save_freq=1000,
