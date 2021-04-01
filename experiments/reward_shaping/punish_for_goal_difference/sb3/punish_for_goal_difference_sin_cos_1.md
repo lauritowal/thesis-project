@@ -9,6 +9,11 @@ No curriculum learning was used
 
 fixed threshold for runway difference to 10°
 
+# corresponding branch 
+experiment_shaped_rewards_sin_cos
+
+commit: 
+
 # Observation function:
 ```
 aircraft_position = self.sim.get_aircraft_geo_position()
