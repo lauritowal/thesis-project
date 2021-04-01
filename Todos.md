@@ -1,12 +1,12 @@
 # Todos
-- Read Immitation Learning: 
-https://smartlabai.medium.com/a-brief-overview-of-imitation-learning-8a8a75c44a9c
-- Inverse RL:
-Inverse reinforcement learning (IRL) is a different approach of imitation learning, 
-where the main idea is to learn the reward function of the environment 
-based on the expert’s demonstrations, 
-and then find the optimal policy (the one that maximizes this reward function) 
-using reinforcement learning.
+- Document Runs for sin cos / non sin cos
+https://awesomeopensource.com/project/Spenhouet/tensorboard-aggregator
+
+- Shaped Rewards: 
+- Experiment 2: Try things from Bonsai video and compare to previous shaped rewards. Make 3 seeds
+- Experiment 3: Curriculum Learning
+- Experiment 4: HER with SB3
+
 
 Idee weiter verfeinern:
 Dubinskurven als Basis für Transfer Learning / Immitation Learning?
