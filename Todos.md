@@ -1,22 +1,44 @@
 # Todos
+- Read Immitation Learning: 
+https://smartlabai.medium.com/a-brief-overview-of-imitation-learning-8a8a75c44a9c
+- Inverse RL:
+Inverse reinforcement learning (IRL) is a different approach of imitation learning, 
+where the main idea is to learn the reward function of the environment 
+based on the expert’s demonstrations, 
+and then find the optimal policy (the one that maximizes this reward function) 
+using reinforcement learning.
+
+Idee weiter verfeinern:
+Dubinskurven als Basis für Transfer Learning / Immitation Learning?
+
+Mir ist gerade etwas eigenfallen. 
+Was meinen Sie zur folgenden Idee: Es wird, ähnlich zum Paper aus dem Lehrstuhl, 
+mit Dubins Kurven ein Pfad zum in jeder Episode vorgegeben. 
+Der Agent soll dann lernen diesen Pfad möglichst gut zu folgen. 
+Sollten dann Hindernisse oder Wind auftauchen, dann soll er lernen ausweichen zu können 
+und wieder auf den richtigen Pfad zurückzukehren. 
+(Etwas so ähnlich wie bei dem Uboot Paper, welches Sie mir geschickt hatten.) 
+--> Mehr dazu lesen...
+
+
 ## Now
+- Add custom field to tensorboard SB3
 
-- Write Custom Wrapper / Callback on Episode End for Environment
-- Create phases for environment
+- Try time instead of distance...
 
-- Mitschreiben der Ergebinsse von Curriculum Learning vs HER
+- Search for more papers for runway landing...
 
-HER
----
-- Try SB3 --> Parameter auto Tuning with SB3 Zoo for your custom env
-- Add angle adaptions to curriculum learning phases also..
-- Try with phases looking at the mean reward instead of reducing heading on every hit...
-- Try HER again
-
+-Try positions for HER
 - Try sin, cos again for algos
 
-- Read Andrew NGs paper about dense rewards and the HER paper...
+- Create phases for environment for angle too
+
 - Check paper about Helicopter
+
+- Mitschreiben der Ergebinsse von Curriculum Learning 
+vs HER 
+vs Dense Reward Engineering (Reward shaping)
+vs Slider?
 
 - Sparse Rewards work well with Ray TD3 for distance and bearing only... [works great... converges after 30 episodes]
 - Change again to observation with bearing and distance only for now [works great... converges after 30 episodes]
