@@ -1,0 +1,5 @@
+- Make seeds work with RLlib
+- Try with 3 seeds in Rllib
+- Add custom field for heading, target, bounds, other to tensorboard sb3
+- Try without sin / cos
+- Try with curriculum learning --> phases --> own folder...
