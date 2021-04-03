@@ -1,4 +1,6 @@
 # Todos
+
+- Read about Curiosity Algorithm... could it be useful?
 - Document Runs for sin cos / non sin cos
 https://awesomeopensource.com/project/Spenhouet/tensorboard-aggregator
 
@@ -9,7 +11,8 @@ https://awesomeopensource.com/project/Spenhouet/tensorboard-aggregator
 
 
 Idee weiter verfeinern:
-Dubinskurven als Basis für Transfer Learning / Immitation Learning?
+Dubinskurven als Basis für Transfer Learning / Immitation Learning? 
+Füllen des Replay buffers mit Beispielen durch Dubins Kurven?
 
 Mir ist gerade etwas eigenfallen. 
 Was meinen Sie zur folgenden Idee: Es wird, ähnlich zum Paper aus dem Lehrstuhl, 
