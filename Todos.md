@@ -1,5 +1,7 @@
 # Todos
 
+- Add custom fields to tensorboard for sb3
+
 - Read about Curiosity Algorithm... could it be useful?
 - Document Runs for sin cos / non sin cos
 https://awesomeopensource.com/project/Spenhouet/tensorboard-aggregator
@@ -11,9 +13,7 @@ https://awesomeopensource.com/project/Spenhouet/tensorboard-aggregator
 
 
 Idee weiter verfeinern:
-Dubinskurven als Basis für Transfer Learning / Immitation Learning? 
-Füllen des Replay buffers mit Beispielen durch Dubins Kurven?
-
+1. Pfad vorgeben durch Dubins Kurve... und dann RL für Wind, Hindernisse etc ähnlich zu Uboot Paper...
 Mir ist gerade etwas eigenfallen. 
 Was meinen Sie zur folgenden Idee: Es wird, ähnlich zum Paper aus dem Lehrstuhl, 
 mit Dubins Kurven ein Pfad zum in jeder Episode vorgegeben. 
@@ -22,6 +22,9 @@ Sollten dann Hindernisse oder Wind auftauchen, dann soll er lernen ausweichen zu
 und wieder auf den richtigen Pfad zurückzukehren. 
 (Etwas so ähnlich wie bei dem Uboot Paper, welches Sie mir geschickt hatten.) 
 --> Mehr dazu lesen...
+2. Füllen des Replay buffers mit Beispielen perfekter Agent bzw durch Dubins Kurven?
+3.Oder sogar weiter: Dubinskurven als Basis für Apprentenship Learning / Transfer Learning / Immitation Learning / Inverse RL?
+
 
 
 ## Now
