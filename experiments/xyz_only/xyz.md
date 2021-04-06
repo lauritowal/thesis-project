@@ -6,6 +6,22 @@ Using x,y,z only in observation to get aircraft to target.
 # corresponding branch
 experiment_xyz_only
 
+# step
+```
+    def step(self, action: np.ndarray):
+        if not (action.shape == self.action_space.shape):
+            raise ValueError('mismatch between action and action space size')
+
+        heading = 0
+        if self.continuous:
+            # for continuous action space: invert normalizaation and unpack action
+            # action = utils.invert_normalization(x_normalized=action[0], min_x=0.0, max_x=360.0, a=-1, b=1)
+            x = action[0]
+            y = action[1]
+            heading = math.degrees(math.atan2(y, x))
+            ...
+```
+
 # Observation function (for experiment_sin_cos only)
 ```
     def _get_observation(self) -> np.array:
