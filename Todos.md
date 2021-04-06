@@ -1,5 +1,6 @@
 # Todos
 
+- FIX: problems with Done and reward...
 - Add custom fields to tensorboard for sb3
 
 - Read about Curiosity Algorithm... could it be useful?
