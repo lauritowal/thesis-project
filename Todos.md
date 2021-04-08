@@ -1,16 +1,11 @@
 # Todos
 
-- FIX: problems with Done and reward...
-- Add custom fields to tensorboard for sb3
-
 - Read about Curiosity Algorithm... could it be useful?
 - Document Runs for sin cos / non sin cos
 https://awesomeopensource.com/project/Spenhouet/tensorboard-aggregator
 
 - Shaped Rewards: 
-- Experiment 2: Try things from Bonsai video and compare to previous shaped rewards. Make 3 seeds
 - Experiment 3: Curriculum Learning
-- Experiment 4: HER with SB3
 
 
 Idee weiter verfeinern:
@@ -24,7 +19,7 @@ und wieder auf den richtigen Pfad zurückzukehren.
 (Etwas so ähnlich wie bei dem Uboot Paper, welches Sie mir geschickt hatten.) 
 --> Mehr dazu lesen...
 2. Füllen des Replay buffers mit Beispielen perfekter Agent bzw durch Dubins Kurven?
-3.Oder sogar weiter: Dubinskurven als Basis für Apprentenship Learning / Transfer Learning / Immitation Learning / Inverse RL?
+3. Oder sogar weiter: Dubinskurven als Basis für Apprentenship Learning / Transfer Learning / Immitation Learning / Inverse RL?
 
 
 
