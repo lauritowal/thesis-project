@@ -8,7 +8,7 @@ to guide it to the correct area if the aircraft is behind the runway...
 - The agent tries to go straight to the target... could hit the target from the wrong side..
 
 # corresponding branch
-experiment_cross_track_error_perpendicular
+experiment_relative_bearing_cross_track_error
 
 # step
 ```
@@ -39,12 +39,21 @@ experiment_cross_track_error_perpendicular
         turn_rate = self.sim.get_turn_rate()
 
 
-        cross_track_error = self._calc_cross_track_error(current_position=aircraft_position,
-                                                         target_position=self.target_position)
+        # TODO: Replace target with localizer here?
+        cross_track_error = self._calc_cross_track_error(aircraft_position, self.localizer_position,
+                                                         self.runway_angle_deg)
 
+        cross_track_error_perpendicular = self._calc_cross_track_error(current_position=aircraft_position,
+                                                         target_position=self.localizer_perpendicular_position,
+                                                         heading=self.runway_angle_deg + 90)
+
+        relative_bearing_to_aircraft_deg = utils.reduce_reflex_angle_deg(self.target_position.true_bearing_deg(aircraft_position) - self.runway_angle_deg) % 360
+        if 90 <= relative_bearing_to_aircraft_deg <= 270:
+            relative_bearing_to_aircraft_deg = 0
 
         distance_to_target = aircraft_position.distance_to_target(self.target_position) / self.max_distance_km
         return np.array([
+            relative_bearing_to_aircraft_deg,
             cross_track_error,
             distance_to_target,
             true_airspeed / 1000,
@@ -75,7 +84,7 @@ experiment_cross_track_error_perpendicular
 
         aircraft_position = self.aircraft_cartesian_position()
 
-        cross_track_error = self._calc_cross_track_error(aircraft_position, self.localizer_position)
+        cross_track_error = self._calc_cross_track_error(aircraft_position, self.localizer_position, self.runway_angle_deg)
 
         diff = (abs(self.last_cross_track_error) + abs(cross_track_error)) / 2
 
@@ -83,7 +92,8 @@ experiment_cross_track_error_perpendicular
 
         relative_bearing_to_aircraft_deg = utils.reduce_reflex_angle_deg(self.target_position.true_bearing_deg(aircraft_position) - self.runway_angle_deg) % 360
 
-        if  90 <= relative_bearing_to_aircraft_deg <= 270:
+        if 90 <= relative_bearing_to_aircraft_deg <= 270:
+            print("area 1")
             reward_heading = 0
             if abs(diff) < 0.1 and current_distance_km < self.last_distance_km[-1]:
 
@@ -109,17 +119,7 @@ experiment_cross_track_error_perpendicular
 
             self.last_cross_track_error = cross_track_error
         else:
-            cross_track_error_perpendicular = self._calc_cross_track_error(aircraft_position, self.localizer_perpendicular_position)
-            # reward = - abs(cross_track_error_perpendicular) / self.max_distance_km
-            diff = (abs(self.last_cross_track_error_perpendicular) + abs(cross_track_error_perpendicular)) / 2
-
-            if abs(cross_track_error_perpendicular) < abs(self.last_cross_track_error_perpendicular):
-                reward = diff
-            else:
-                reward = -diff
-
-            self.last_cross_track_error_perpendicular = cross_track_error_perpendicular
-
+            reward = - abs(relative_bearing_to_aircraft_deg) / 180
 
         return reward
 ```
@@ -131,8 +131,7 @@ TD3
 Rllib
 ## Algorithm Hyperparams
 ```
-"lr": 0.0001
- Rest to default...
+
 ```
 
 # Results
