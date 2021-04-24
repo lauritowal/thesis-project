@@ -7,7 +7,7 @@ import numpy as np
 
 # Parallel environments
 env_kwargs = {
-    "jsbsim_path": "/Users/walter/thesis_project/jsbsim",
+    "jsbsim_path": "/Users/walter/Desktop/thesis_project/jsbsim",
     "max_episode_time_s":60
 }
 

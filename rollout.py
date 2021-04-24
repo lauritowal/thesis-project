@@ -43,7 +43,7 @@ Example Usage via executable:
 # ModelCatalog.register_custom_model("pa_model", ParametricActionsModel)
 # register_env("pa_cartpole", lambda _: ParametricActionsCartPole(10))
 
-global_jsbsim_path = "/Users/walter/thesis_project/jsbsim"
+global_jsbsim_path = "/Users/walter/Desktop/thesis_project/jsbsim"
 def env_creator(env_config=None):
     return NormalizeObservation(GuidanceEnv(
         jsbsim_path=global_jsbsim_path,

@@ -3,5 +3,5 @@
 --run TD3  \
 --episodes 20 \
 --no-render \
---jsbsim_path "/Users/walter/thesis_project/jsbsim"
+--jsbsim_path "/Users/walter/Desktop/thesis_project/jsbsim"
 #--video-dir /Users/walter/thesis_project/data/videos/

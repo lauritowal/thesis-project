@@ -10,7 +10,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__)) # This is your Project Roo
 NUM_EPISODES = 1
 
 env = gym.make(id='guidance-continuous-v0',
-               jsbsim_path="/Users/walter/thesis_project/jsbsim",
+               jsbsim_path="/Users/walter/Desktop/thesis_project/jsbsim",
                max_episode_time_s=60,
                flightgear_path="/Users/walter/FlightGear.app/Contents/MacOS/")
 
