@@ -11,7 +11,10 @@ Start with runway behind aircraft to learn to handle distance first.
 
 
 # corresponding branch
-experiment_cross_track_error_distance_2
+experiment_cross_track_error_distance_2 and experiment_cross_track_error_distance_3
+
+In 3 there is a function which calculates the distance to the line 
+created by the runway point and the perpendicular localizer...
 
 # step
 ```
