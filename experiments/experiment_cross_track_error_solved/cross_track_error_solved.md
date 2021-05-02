@@ -7,6 +7,8 @@ Afterwards calculate the cross track error to the norm of the runway.
 # corresponding branch
 experiment_cross_track_error_210429
 
+See checkpoint 991 in same folder
+
 # step
 ```
     def step(self, action: np.ndarray):
