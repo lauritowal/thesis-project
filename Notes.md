@@ -4,6 +4,10 @@ A standard rate turn is defined as a 3° per second turn, which completes a 360�
 
 # RL tipps 
 
+SEEDS:
+https://harald.co/2019/07/30/reproducibility-issues-using-openai-gym/
+
+
 ww — Today at 11:04 AM
 Wow, that's really cool! For the past year I have been sticking from IPython import embed; embed() into the code to debug
 Ariel — Today at 11:04 AM
