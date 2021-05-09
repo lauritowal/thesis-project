@@ -1,0 +1,212 @@
+# Punish for goal difference
+Experiment Date: 09 May 2021, Time: 21:09
+## What is the experiment about
+Use sparse rewards / punishments only for reaching target with wrong altitude.
++ shaped reward for punishing the difference to the end height in every time step
+
+# corresponding branch
+experiment_altitude_shaped
+
+See checkpoint __ in same folder
+
+# step
+```
+    def step(self, action: np.ndarray):
+        if not (action.shape == self.action_space.shape):
+            raise ValueError('mismatch between action and action space size')
+
+        heading = 0
+        if self.continuous:
+            # for continuous action space: invert normalizaation and unpack action
+            # action = utils.invert_normalization(x_normalized=action[0], min_x=0.0, max_x=360.0, a=-1, b=1)
+            x = action[0]
+            y = action[1]
+            heading = math.degrees(math.atan2(y, x))
+            ...
+```
+
+# Observation function (for experiment_sin_cos only)
+```
+    def _get_observation(self) -> np.array:
+        aircraft_position = self.aircraft_cartesian_position()
+
+        diff = self.target_position - aircraft_position
+
+        runway_heading_error_deg = utils.reduce_reflex_angle_deg(self.sim.get_heading_true_deg() - self.runway_angle_deg)
+        true_airspeed = self.sim.get_true_air_speed()
+        # # yaw_rate = self.sim[prp.r_radps]
+        turn_rate = self.sim.get_turn_rate()
+
+        altitude_ft = self.sim[prp.altitude_sl_ft]
+        altitude_rate_fps = self.sim[prp.altitude_rate_fps]
+
+        in_area = self._in_area()
+        if in_area:
+            cross_track_error = self._calc_cross_track_error(aircraft_position, self.target_position)
+        else:
+            cross_track_error = self._calc_cross_track_error(aircraft_position,
+                                                             self.localizer_perpendicular_position)
+
+        distance_to_target = aircraft_position.distance_to_target(self.target_position) / self.max_distance_km
+        return np.array([
+            in_area,
+            cross_track_error,
+            altitude_ft / GuidanceEnv.MAX_HEIGHT_FT,
+            altitude_rate_fps / GuidanceEnv.MAX_HEIGHT_FT,
+            distance_to_target,
+            true_airspeed / 1000,
+            turn_rate,
+            diff.x,
+            diff.y,
+            diff.z,
+            math.sin(math.radians(self.sim.get_heading_true_deg())),
+            math.cos(math.radians(self.sim.get_heading_true_deg())),
+            math.sin(math.radians(runway_heading_error_deg)),
+            math.cos(math.radians(runway_heading_error_deg))
+        ], dtype=np.float32)
+```
+
+# Reward function (for experiment_sin_cos only)
+```
+   def _reward(self):
+        if self.sim.is_aircraft_altitude_to_low(GuidanceEnv.CRASH_HEIGHT_FT):
+            return -10
+
+        relative_bearing_to_aircraft_deg = utils.reduce_reflex_angle_deg(self.target_position.direction_to_target_deg(self.aircraft_cartesian_position()) - self.runway_angle_deg) % 360
+
+        runway_heading_error_deg = utils.reduce_reflex_angle_deg(self.sim.get_heading_true_deg() - self.runway_angle_deg)
+        is_heading_correct = abs(runway_heading_error_deg) < self.runway_angle_threshold_deg
+
+        aircraft_position = self.aircraft_cartesian_position()
+        diff_position = self.target_position - aircraft_position
+
+        # Really needed or -10 above enough?
+        # reward_altitude = -1 + self.sim[prp.altitude_sl_ft] / GuidanceEnv.MAX_HEIGHT_FT
+
+        if self._is_aircraft_at_target(aircraft_position=self.aircraft_cartesian_position(),
+                                                       target_position=self.target_position,
+                                                       threshold=GuidanceEnv.MIN_DISTANCE_TO_TARGET_KM) and is_heading_correct and abs(diff_position.z) <= GuidanceEnv.HEIGHT_THRESHOLD_M / 1000:
+            heading_bonus = 1 - np.interp(abs(runway_heading_error_deg), [0, self.runway_angle_threshold_deg], [0, 1])
+            reward = 9 + heading_bonus - abs(diff_position.z)
+
+            # reward for height
+            print("diff_position.z", diff_position.z)
+            print("GuidanceEnv.HEIGHT_THRESHOLD_M", GuidanceEnv.HEIGHT_THRESHOLD_M / 1000)
+
+            return reward
+
+        if self._is_aircraft_at_target(aircraft_position=self.aircraft_cartesian_position(),
+                                       target_position=self.target_position,
+                                       threshold=GuidanceEnv.MIN_DISTANCE_TO_TARGET_KM) and not (90 <= relative_bearing_to_aircraft_deg <= 270):
+            return -10
+
+        if self._is_aircraft_at_target(aircraft_position=self.aircraft_cartesian_position(),
+                                       target_position=self.target_position,
+                                       threshold=GuidanceEnv.MIN_DISTANCE_TO_TARGET_KM) and abs(diff_position.z) > GuidanceEnv.HEIGHT_THRESHOLD_M / 1000:
+            return - abs(diff_position.z) * 3
+
+        in_area = self._in_area()
+
+        current_distance_km = aircraft_position.distance_to_target(self.target_position)
+        reward_heading = 0
+        reward_cross = 0
+        area_2_penalty = 0
+        if in_area:
+            cross_track_error = self._calc_cross_track_error(aircraft_position, self.target_position)
+            cross_track_medium_error = (abs(self.last_cross_track_error) + abs(cross_track_error)) / 2
+            diff_cross = abs(self.last_cross_track_error - cross_track_error)
+
+            diff_headings = abs(math.radians(utils.reduce_reflex_angle_deg(runway_heading_error_deg - self.last_runway_heading_error_deg[-1])) / math.pi)
+            if abs(cross_track_medium_error) < 0.1 and current_distance_km < self.last_distance_km[-1] and abs(runway_heading_error_deg) < 90:
+                if abs(runway_heading_error_deg) < abs(self.last_runway_heading_error_deg[-1]):
+                    reward_heading = diff_headings
+                else:
+                    reward_heading = -diff_headings
+                reward_cross = 1
+            else:
+                reward_cross = -diff_cross * 2
+
+            self.last_distance_km.append(current_distance_km)
+            self.last_runway_heading_error_deg.append(runway_heading_error_deg)
+            self.last_cross_track_error = cross_track_error
+        else:
+            cross_track_error = self._calc_cross_track_error(aircraft_position, self.localizer_perpendicular_position)
+            # cross_track_medium_error = (abs(self.last_cross_track_error_perpendicular) + abs(cross_track_error)) / 2
+            self.last_cross_track_error_perpendicular = cross_track_error
+            area_2_penalty = -2
+
+        # if len(self.last_distance_km) > 1:
+        #     last_distances = self.last_distance_km[-2:] # last two
+
+        # check if diff and heading > 90
+
+        reward_cross_shaped = - abs(cross_track_error) / self.max_distance_km
+
+        # negative --> write down experiment --> then try positive
+        reward_altitude_shaped = - abs(diff_position.z) / 10
+
+        print("reward_altitude_shaped", reward_altitude_shaped)
+        print("reward_cross_shaped", reward_cross_shaped)
+
+        reward = (reward_cross + reward_cross_shaped + reward_heading + area_2_penalty + reward_altitude_shaped)
+
+        # a= 1
+        # s= 10 / 1000
+        # reward = a * math.exp(-(cross_track_error ** 2) / 2*s)
+
+
+        return reward
+```
+
+# Algorithm
+## Used Algorithm
+TD3
+## Used Framework
+Rllib
+## Algorithm Hyperparams
+    custom_config = {
+        "lr": 0.0001, # tune.grid_search([0.01, 0.001, 0.0001]),
+        "num_gpus": 0,
+        "framework": "torch",
+        "callbacks": CustomCallbacks,
+        "log_level": "WARN",
+        "evaluation_interval": 20,
+        "evaluation_num_episodes": 10,
+        "num_workers": 0,
+        "num_envs_per_worker": 3,
+        "seed": SEED
+    }
+# Results
+Number of episodes: 
+Number of steps:
+
+
+# Seed
+"seed": 5
+
+
+### Example images in the end of training (10)
+
+### Description
+
+### Graph for all seeds
+
+## Conclusion Description
+Similar to experiment_altitude_sparse:
+
+- Learns to reach target even in a more stable way then solutions without considering altitude!
+Probably because unsuccesful episodes are broken up early and rewarded with a high negative reward...
+This makes agent try to reach target even faster...
+
+- The agent seems to fly more circles and longer trajectories sometimes... 
+probably to reduce the height to the target... 
+
+However...
+
+does even worse then sparse in reaching with correct height! 
+Probably because the agent can't seem to understand that the error is for the height diff?
+Or he thinks he can't control it so it seems to be as if it where a normal negative reward to speed him up...
+
+# Next Steps
+Maybe episode should only be stopped when correct altitude is reached?
+But this wouldn't be a choice for landing no?
