@@ -64,11 +64,12 @@ See checkpoint __ in same folder
             math.sin(math.radians(runway_heading_error_deg)),
             math.cos(math.radians(runway_heading_error_deg))
         ], dtype=np.float32)
+
 ```
 
 # Reward function (for experiment_sin_cos only)
 ```
-   def _reward(self):
+ def _reward(self):
         if self.sim.is_aircraft_altitude_to_low(GuidanceEnv.CRASH_HEIGHT_FT):
             return -10
 
@@ -103,7 +104,7 @@ See checkpoint __ in same folder
         if self._is_aircraft_at_target(aircraft_position=self.aircraft_cartesian_position(),
                                        target_position=self.target_position,
                                        threshold=GuidanceEnv.MIN_DISTANCE_TO_TARGET_KM) and abs(diff_position.z) > GuidanceEnv.HEIGHT_THRESHOLD_M / 1000:
-            return - abs(diff_position.z) * 3
+            return - abs(diff_position.z) * 4
 
         in_area = self._in_area()
 
@@ -135,27 +136,30 @@ See checkpoint __ in same folder
             self.last_cross_track_error_perpendicular = cross_track_error
             area_2_penalty = -2
 
-        # if len(self.last_distance_km) > 1:
-        #     last_distances = self.last_distance_km[-2:] # last two
-
-        # check if diff and heading > 90
 
         reward_cross_shaped = - abs(cross_track_error) / self.max_distance_km
-
-        # negative --> write down experiment --> then try positive
         reward_altitude_shaped = - abs(diff_position.z) / 10
+        ## TODO: Test this out... I think it does not work... maybe though positive rewards for altitude do help since it should help to make aircraft to longer
+        # alpha = 0.7
+        # reward_shaped = (1-alpha) * reward_cross_shaped + alpha * reward_altitude_shaped
+        #
+        # print("reward_altitude_shaped", reward_altitude_shaped)
+        # print("reward_cross_shaped", reward_cross_shaped)
 
-        print("reward_altitude_shaped", reward_altitude_shaped)
+        reward_shaped = reward_cross_shaped + 3*reward_altitude_shaped
+
         print("reward_cross_shaped", reward_cross_shaped)
+        print("reward_altitude_shaped", 3*reward_altitude_shaped)
+        print("reward_shaped", reward_shaped)
 
-        reward = (reward_cross + reward_cross_shaped + reward_heading + area_2_penalty + reward_altitude_shaped)
+        reward_sparse = reward_cross + reward_heading + area_2_penalty
 
         # a= 1
         # s= 10 / 1000
         # reward = a * math.exp(-(cross_track_error ** 2) / 2*s)
 
 
-        return reward
+        return reward_shaped + reward_sparse
 ```
 
 # Algorithm
@@ -192,21 +196,11 @@ Number of steps:
 ### Graph for all seeds
 
 ## Conclusion Description
-Similar to experiment_altitude_sparse:
-
-- Learns to reach target even in a more stable way then solutions without considering altitude!
-Probably because unsuccesful episodes are broken up early and rewarded with a high negative reward...
-This makes agent try to reach target even faster...
-
-- The agent seems to fly more circles and longer trajectories sometimes... 
-probably to reduce the height to the target... 
-
-However...
+Similar to experiment_altitude_shaped_2:
 
 does even worse then sparse in reaching with correct height! 
 Probably because the agent can't seem to understand that the error is for the height diff?
 Or he thinks he can't control it so it seems to be as if it where a normal negative reward to speed him up...
 
 # Next Steps
-Maybe episode should only be stopped when correct altitude is reached?
-But this wouldn't be a choice for landing no?
+Try to implement altitude hold also and give altitude in action to control descending if needed.
