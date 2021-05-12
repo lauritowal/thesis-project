@@ -23,6 +23,8 @@ See checkpoint __ in same folder
             x = action[0]
             y = action[1]
             heading_deg = math.degrees(math.atan2(y, x))
+
+            ##### ERROR: Should be action[2] not action[0]
             altitude_ft = np.interp(abs(action[0]), [-1, 1], [0, GuidanceEnv.MAX_HEIGHT_FT])
 
         print("action altitude_ft", altitude_ft)
@@ -249,4 +251,7 @@ Probably because:
 - probably an error ? 
 # Next Steps
 - More debuggins is necessary---> Print out all the altitude actions in a diagram...
+---> YES there was a bug... see comment in step method... should be action[2] not action[0]
+
+
 - 3D Target
