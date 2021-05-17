@@ -14,7 +14,7 @@ It could help to give the agent again the possibility to adapt gamma (glide angl
 # corresponding branch
 experiment_exponentia_lat_target_3d
 
-See checkpoint __ in same folder
+checkpoint 3406 in best folder
 
 # step
 ```
@@ -67,6 +67,7 @@ See checkpoint __ in same folder
             roll_angle_rate=self.sim[prp.p_radps],
             true_air_speed=self.sim.get_true_air_speed()
         )
+
         ...
 ```
 
@@ -113,7 +114,6 @@ See checkpoint __ in same folder
             math.sin(math.radians(runway_heading_error_deg)),
             math.cos(math.radians(runway_heading_error_deg))
         ], dtype=np.float32)
-
 ```
 
 # Reward function (for experiment_sin_cos only)
@@ -234,16 +234,17 @@ Rllib
     }
 # Results
 Number of episodes: 
-Number of steps:
+Number of steps: 1,7 M
 
 
 # Seed
-"seed": 5
+"seed": 6
 
 
 ### Example images in the end of training (10)
 
 ### Description
+Takes a lot more time to train then the 2d version
 
 ### Graph for all seeds
 
