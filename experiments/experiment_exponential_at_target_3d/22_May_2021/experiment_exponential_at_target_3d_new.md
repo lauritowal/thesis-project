@@ -254,17 +254,18 @@ Rllib
         },
     }
 # Results
-Number of episodes: 
-Number of steps: 1,7 M
+Number of episodes: 5000
+Number of steps:
 
 
 # Seed
+"seed": 4
+Seed 4 performs well
+
 "seed": 7
 Seed 7 performs very well
 
 "seed": 8
-
-"seed": 9
 
 
 ### Example images in the end of training (10)
