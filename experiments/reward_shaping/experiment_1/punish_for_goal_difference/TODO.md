@@ -1,7 +1,19 @@
-- Average Runs
-https://awesomeopensource.com/project/Spenhouet/tensorboard-aggregator
-- Or better: https://www.tensorflow.org/tensorboard/dataframe_api
-- Add custom field for heading, target, bounds, other to tensorboard sb3
-- Try with curriculum learning --> phases --> own folder...
+- Keep training the best seed for full circle now. [IN PROGRESS]
 
-Check Pretrain: https://discuss.ray.io/t/how-to-pretrain-a-model-with-behavior-cloning/278
+- prepare docker for titze: https://www.frontiersin.org/research-topics/19880/ai-in-aviation#articles
+https://github.com/rtatze/JSBSim_gym_wrapper [IN PROGRESS]
+
+- Train on elevevator instead of gamma hold 
+
+
+- Make the things you have now awesome, add some experiments with wind... and leave obstacles out... !
+
+- Evaluate latest run for half and full circle and put average with seaborn into same folder...
+
+
+
+- Make plan for next steps
+
+- Next: Wind
+- Evaluate with wind
+- Add wind into training ? 
