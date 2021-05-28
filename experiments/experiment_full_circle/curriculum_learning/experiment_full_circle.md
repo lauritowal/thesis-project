@@ -281,11 +281,17 @@ Number of steps:
 ### Example images in the end of training (10)
 
 ### Description
-Gets around 20-30% correct
+Gets around 20-30% correct, which is not that good.
 
-
-### Graph for all seeds
-
-## Conclusion Description
-
-# Next Steps
+# Evaluation:
+SEED=1:
+```
+std_reward 247.01089445933258
+mean_reward -135.83687429957092
+at target 25
+on tracks 27
+num total episodes 100
+distances 1.5061152498581813
+runway_angle_errors (all) 95.67494757498675
+on tracks 0.27
+```
