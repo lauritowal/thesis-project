@@ -1,4 +1,8 @@
-- Keep training the best seed for full circle now. [IN PROGRESS]
+- Keep training the best seed for full circle now. [IN PROGRESS] 
+--> Analyse: TD3_guidance-continuous-v0_2021-05-26_11-14-54v2gvv_sf in Colab and evaluate
+
+- Train from latest Checkpoint of TD3_guidance-continuous-v0_2021-05-26_11-14-54v2gvv_sf for another 10k steps
+
 
 - prepare docker for titze: https://www.frontiersin.org/research-topics/19880/ai-in-aviation#articles
 https://github.com/rtatze/JSBSim_gym_wrapper [IN PROGRESS]
