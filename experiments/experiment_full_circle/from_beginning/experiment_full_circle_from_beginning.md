@@ -274,18 +274,15 @@ Rllib
 "seed": 7
 
 # Evaluation:
-std_reward 565.9229614510817
-mean_reward -388.38718440564446
-at target 23
-on tracks 46
+std_reward 248.95998751186323
+mean_reward -77.30663796003128
+at target 42
+on tracks 59
 num total episodes 100
-distances 2.278238741306011
-runway_angle_errors (all) 35.12562362387709
-on tracks 0.46
-
+distances 0.8206322594904634
+runway_angle_errors (all) 55.12739080088253
+on tracks 0.59
 
 ### Description
 
-Does only seem to get on track right, when target is in front of aircraft...
-See images
-
+Does get around 60% right for both areas. Maybe some more training should improve this
