@@ -274,6 +274,7 @@ Rllib
 "seed": 7
 
 # Evaluation:
+SEED=1:
 std_reward 248.95998751186323
 mean_reward -77.30663796003128
 at target 42
@@ -283,6 +284,29 @@ distances 0.8206322594904634
 runway_angle_errors (all) 55.12739080088253
 on tracks 0.59
 
+SEED=2:
+std_reward 291.420779301022
+mean_reward -120.2076194878055
+at target 29
+on tracks 49
+num total episodes 100
+distances 1.1192330645325963
+runway_angle_errors (all) 72.31258758490134
+on tracks 0.49
+
+SEED=3:
+std_reward 268.15990474718836
+mean_reward -126.8096332437745
+at target 45
+on tracks 61
+num total episodes 100
+distances 0.8044265512419376
+runway_angle_errors (all) 58.512456326945795
+on tracks 0.61
+
 ### Description
 
-Does get around 60% right for both areas. Maybe some more training should improve this
+Does get around 50-60% right for both areas. Maybe some more training should improve this:
+Try:
+- train from beginning, but for 10.000 steps
+- train starting from checkpoint for another 5000 steps
