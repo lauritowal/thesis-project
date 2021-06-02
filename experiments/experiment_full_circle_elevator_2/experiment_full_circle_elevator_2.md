@@ -8,7 +8,7 @@ Similar to experiment_full_circle_elevator
 experiment_full_circle_elevator_2
 
 # tensorboard / ray results: 
-TD3_guidance-continuous-v0_2021-05-30_22-25-14hgx48_u1 
+See google colab: TD3_guidance-continuous-v0_2021-06-01_12-42-40gz8llegn
 
 # generate target position 
     def _generate_random_target_position(self) -> (CartesianPosition, float):
