@@ -1,3 +1,7 @@
+- Instead of altitude ft to ground --> replace with rest altitude ft to runway... 
+- If on path --> reward for decreasing difference to target height (decreasing rest altitude)
+- Try give more weight to vertical track error maybe?   
+
 - prepare docker for titze: https://www.frontiersin.org/research-topics/19880/ai-in-aviation#articles
 https://github.com/rtatze/JSBSim_gym_wrapper [IN PROGRESS]
 

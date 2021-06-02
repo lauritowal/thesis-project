@@ -308,4 +308,5 @@ Two typical cases for failure:
 2. Does follow path but "on the wrong direction"... goes away from target instead of closer...  
 
 # Next Steps:
-1. Try to 
+1. Instead of altitude ft to ground --> replace with rest altitude ft to runway
+2. Try to give penalty when in area 1 and runway angle error > 90 deg
