@@ -208,6 +208,10 @@ See google colab:
             else:
                 reward_track = -diff_track * 2
 
+                # this could prevent going to the wrong direction ?
+                if abs(runway_heading_error_deg) > 90:
+                    reward_heading = abs(runway_heading_error_deg) / 180
+
             self.last_distance_km.append(current_distance_km)
             self.last_runway_heading_error_deg.append(runway_heading_error_deg)
             self.last_track_error = track_error
@@ -220,14 +224,15 @@ See google colab:
 
         # print("in_area", in_area, "track error", track_error, "cross", cross_track_error, "vertical", vertical_track_error)
         clipped = np.clip(np.exp(abs(track_error)), math.exp(0), math.exp(self.max_distance_km))
-        reward_cross_shaped = - np.interp(clipped,
+        reward_track_shaped = - np.interp(clipped,
                                           [math.exp(0), math.exp(self.max_distance_km)],
                                           [0, 1])
+
         # print("reward_cross_shaped", reward_cross_shaped)
 
         # reward_altitude_shaped = - abs(diff_position.z) / 10
 
-        reward_shaped = reward_cross_shaped # + reward_altitude_shaped
+        reward_shaped = reward_track_shaped # + reward_altitude_shaped
         reward_sparse = reward_track + penalty_area_2 + reward_heading
 
         return reward_shaped + reward_sparse
