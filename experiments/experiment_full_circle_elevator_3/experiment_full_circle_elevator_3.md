@@ -210,7 +210,7 @@ See google colab:
 
                 # this could prevent going to the wrong direction ?
                 if abs(runway_heading_error_deg) > 90:
-                    reward_heading = abs(runway_heading_error_deg) / 180
+                    reward_heading = - abs(runway_heading_error_deg) / 180
 
             self.last_distance_km.append(current_distance_km)
             self.last_runway_heading_error_deg.append(runway_heading_error_deg)
@@ -277,8 +277,8 @@ Rllib
         "evaluation_num_workers": 1,
     }
 # Results
-Number of episodes: 10.000
-Number of steps: around 10 Millions
+Number of episodes: 5.000
+Number of steps: around 5 Millioms
 
 
 # Seed
@@ -288,20 +288,22 @@ Number of steps: around 10 Millions
 ### Example images in the end of training (10)
 
 ### Description
-Gets 11% correct in evaluation and after training for a long time
+Gets max 1% correct in evaluation and after training for a long time.
 
 # Evaluation:
 SEED=1:
 ```
-std_reward 195.7282480188357
-mean_reward -89.34634864745944
-at target 6
-on tracks 11
-bounds_sum 33
+std_reward 160.33549140131962
+mean_reward -290.5690104285603
+at target 2
+on tracks 1
+headings_sum 0
+others_sum 48
+bounds_sum 50
 num total episodes 100
-distances 2.767388335105699
-runway_angle_errors (all) 134.10025561224506
-on tracks 0.11
+distances 3.3090212068383704
+runway_angle_errors (all) 86.79264624413352
+successes 0.02
 ```
 Two typical cases for failure:
 1. Is close to target but then has still some excess height left, so it tries to turn but then height is not enough
