@@ -305,10 +305,7 @@ distances 3.3090212068383704
 runway_angle_errors (all) 86.79264624413352
 successes 0.02
 ```
-Two typical cases for failure:
-1. Is close to target but then has still some excess height left, so it tries to turn but then height is not enough
-2. Does follow path but "on the wrong direction"... goes away from target instead of closer...  
+It moves on 90° only now and tries to avoid going under the 90°... See images for better understanding.
 
 # Next Steps:
-1. Instead of altitude ft to ground --> replace with rest altitude ft to runway
-2. Try to give penalty when in area 1 and runway angle error > 90 deg
+1. Increase
