@@ -328,8 +328,18 @@ success 0.66
 
 SEED=7: (offline)
 ```
-
-
+std_reward 274.61912621451387
+mean_reward -216.96819138134236
+at target 8
+on tracks 21
+headings_sum 13
+others_sum 42
+bounds_sum 50
+num total episodes 100
+distances 3.72639768413616
+runway_angle_errors (all) 125.67257696795983
+success total 21
+success 0.21
 ```
 
 # Next Steps:
