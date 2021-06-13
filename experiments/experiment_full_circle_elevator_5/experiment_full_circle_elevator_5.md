@@ -1,15 +1,15 @@
 # Punish for goal difference
-Experiment Date: 11 June 2021, Time: 16:14
+Experiment Date: 12 June 2021, Time: 16:14
 ## What is the experiment about
 
-As experiment_full_circle_elevator_4 --> Only difference "max_target_distance_km" increased to 3
+As experiment_full_circle_elevator_5 --> Only difference "max_target_distance_km" increased to 3
 
 
 # corresponding branch
 experiment_full_circle_elevator_5
 
 # tensorboard / ray results: 
-See google colab: TD3_guidance-continuous-v0_2021-06-10_16-37-42efftujeg
+See google colab: 
 
 # generate target position 
     def _generate_random_target_position(self) -> (CartesianPosition, float):
@@ -105,7 +105,7 @@ See google colab: TD3_guidance-continuous-v0_2021-06-10_16-37-42efftujeg
 
 # Observation function (for experiment_sin_cos only)
 ```
-   def _get_observation(self) -> np.array:
+    def _get_observation(self) -> np.array:
         aircraft_position = self.aircraft_cartesian_position()
 
         diff = self.target_position - aircraft_position
@@ -263,7 +263,7 @@ custom_config = {
             "agent_interaction_freq": 5,
             "target_radius": 100 / 1000,
             "max_distance_km": 4,
-            "max_target_distance_km": 3, # increased to 3
+            "max_target_distance_km": 3, # <----- increased to 3
             "max_episode_time_s": 60 * 5,
             "phase": 0,
             "render_progress_image": False,
@@ -275,43 +275,67 @@ custom_config = {
 }
 
 # Results
-Number of episodes: 5.000
-Number of steps:  around 5 Millioms
+Number of episodes: 4.201
+Number of steps:  around 4.2 Millioms
 
 
 # Seed
 "seed": 4 (Colab)
-TD3_guidance-continuous-v0_2021-06-10_16-37-42efftujeg
+TD3_guidance-continuous-v0_2021-06-11_22-05-22068wy9zy
 
 ### Example images in the end of training (10)
 
 ### Description
-Gets around 40-60% correct in evaluation and after training depending on SEED.
+Gets around 45% correct in evaluation and after training depending on SEED 4
+Checkpoint at around 4201.
 
-Checkpoint at around 4701 performs best (60% for seed 4). Later the agent seems to "forget" and performs worse.
+However performs worse and worse after around 2.5M for on_track_mean --> but reward is still increasing
 
 # Evaluation:
 
-For checkpoint 4701 --> around 5M steps of training
+For checkpoint 4201 --> around 5M steps of training
 
 SEED=3
 
 SEED=4 (Colab):
 
-TD3_guidance-continuous-v0_2021-06-06_18-09-27ljsu87rf
+TD3_guidance-continuous-v0_2021-06-11_22-05-22068wy9zy
+
+Für 4201 und "max_target_distance_km": 3 für training und evaluation
+
 ```
-std_reward 308.5940927624238
-mean_reward -214.31146942789653
-at target 8
-on tracks 20
-headings_sum 14
-others_sum 36
-bounds_sum 56
+std_reward 397.144112858776
+mean_reward -275.10434608872316
+at target 5
+on tracks 36
+headings_sum 27
+others_sum 53
+bounds_sum 42
 num total episodes 100
-distances 3.9104193821866393
-runway_angle_errors (all) 137.8623850297864
-success total 20
-success 0.2
+distances 2.46065809684241
+runway_angle_errors (all) 76.63361498041034
+success total 45
+success 0.45
 ```
 
+Für 2501 und "max_target_distance_km": 3 für training und evaluation
+
+```
+std_reward 352.29996763939033
+mean_reward -205.07353670752426
+at target 11
+on tracks 13
+headings_sum 27
+others_sum 55
+bounds_sum 34
+num total episodes 100
+distances 1.9593506543027812
+runway_angle_errors (all) 74.131815816184
+success total 33
+success 0.33
+```
+
+
 # Next Steps:
+Try to figure out why on track gets worse while reward is increasing 
+--> reward function is probably not describing what is intended

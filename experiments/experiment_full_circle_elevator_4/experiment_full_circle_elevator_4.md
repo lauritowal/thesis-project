@@ -343,5 +343,7 @@ success 0.21
 ```
 
 # Next Steps:
+- Retrain for 3 seeds --> Titze, 3, 4 and 7
+
 - Random glide param of 3-9° maybe?
 - Train for 4M to 5M only?
