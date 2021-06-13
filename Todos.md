@@ -2,8 +2,6 @@
 
 
 ## Now
-- Train considering engines off and altitude
-
 - Read about and try: https://dibyaghosh.com/blog/rl/gcsl.html
 
 
