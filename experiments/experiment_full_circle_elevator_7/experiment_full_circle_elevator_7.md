@@ -357,4 +357,23 @@ success total 72
 success 0.72
 ```
 
+checkpoint 9901
+SEED=1
+```
+std_reward 342.21864962839186
+mean_reward -24.979426683724242
+at target 27
+on tracks 79
+headings_sum 41
+others_sum 70
+bounds_sum 3
+num total episodes 100
+distances 0.9398786355578553
+runway_angle_errors (all) 41.79080467354642
+success total 79
+success 0.79
+```
+SEED=2
+
+SEED=3
 # Next Steps:
