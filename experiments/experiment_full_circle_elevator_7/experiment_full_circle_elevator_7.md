@@ -286,79 +286,11 @@ Removing the penalty for height seems to make the result better.
 
 SEED=3
 
-SEED=4 (Colab):
+TRAINING SEED=4 (Colab):
+- TD3_guidance-continuous-v0_2021-06-14_13-46-260fmowqi_
+- checkpoint 9901
 
-TD3_guidance-continuous-v0_2021-06-14_13-46-260fmowqi_
-
-checkpoint 3501
-
-```
-std_reward 338.2979851696919
-mean_reward -42.8919290421843
-at target 30
-on tracks 67
-headings_sum 53
-others_sum 61
-bounds_sum 9
-num total episodes 100
-distances 1.3590406409890563
-runway_angle_errors (all) 45.046474204888085
-success total 68
-success 0.68
-```
-
-checkpoint 7501
-
-SEED=1
-```
-std_reward 355.7226449702175
-mean_reward -18.058297727360973
-at target 31
-on tracks 74
-headings_sum 59
-others_sum 63
-bounds_sum 6
-num total episodes 100
-distances 0.9620851114825318
-runway_angle_errors (all) 30.79095940954684
-success total 81
-success 0.81
-```
-
-SEED=2
-```
-std_reward 446.66344603584236
-mean_reward -74.74066762374525
-at target 15
-on tracks 71
-headings_sum 63
-others_sum 80
-bounds_sum 5
-num total episodes 100
-distances 1.1512121482702131
-runway_angle_errors (all) 34.30096053162243
-success total 72
-success 0.72
-```
-
-SEED=3
-```
-std_reward 427.8636236792016
-mean_reward -82.36557858761536
-at target 19
-on tracks 70
-headings_sum 53
-others_sum 72
-bounds_sum 9
-num total episodes 100
-distances 1.0253511675561264
-runway_angle_errors (all) 40.035835506412624
-success total 72
-success 0.72
-```
-
-checkpoint 9901
-SEED=1
+EVALUATION SEED=1
 ```
 std_reward 342.21864962839186
 mean_reward -24.979426683724242
@@ -373,7 +305,35 @@ runway_angle_errors (all) 41.79080467354642
 success total 79
 success 0.79
 ```
-SEED=2
-
-SEED=3
+EVALUATION SEED=2
+```
+std_reward 427.72264339700973
+mean_reward -80.30684487158031
+at target 18
+on tracks 73
+headings_sum 35
+others_sum 74
+bounds_sum 8
+num total episodes 100
+distances 1.1912377129483516
+runway_angle_errors (all) 47.039743878120554
+success total 74
+success 0.74
+```
+EVALUATION SEED=3
+```
+std_reward 413.7289944107362
+mean_reward -79.40880049180339
+at target 17
+on tracks 78
+headings_sum 46
+others_sum 80
+bounds_sum 3
+num total episodes 100
+distances 0.8951124003907419
+runway_angle_errors (all) 38.80003455479103
+success total 78
+success 0.78
+```
 # Next Steps:
+Train other two seeds: 3, 7
