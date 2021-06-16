@@ -1,4 +1,4 @@
-# Punish for goal difference
+# Elevator 7 [VEERY GOOD!]
 Experiment Date: 14 June 2021, Time: 23:57
 ## What is the experiment about
 
@@ -336,4 +336,6 @@ success total 78
 success 0.78
 ```
 # Next Steps:
-Train other two seeds: 3, 7
+- Train other two seeds: 3, 7
+- Try to remove exp for reward again and see if it performs better
+- `reward_track = 1 # Maybe diff_track * 2 instead of 1`
