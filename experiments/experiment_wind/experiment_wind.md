@@ -333,7 +333,18 @@ TRAINING SEED=4 (Colab):
 
 EVALUATION SEED=1
 ```
-
+std_reward 359.01656571404544
+mean_reward -75.07325537861027
+at target 26
+on tracks 61
+headings_sum 29
+others_sum 55
+bounds_sum 19
+num total episodes 100
+distances 1.5622825706118264
+runway_angle_errors (all) 54.78740267874805
+success total 64
+success 0.64
 ```
 EVALUATION SEED=2
 ```
@@ -352,7 +363,21 @@ success 0.51
 ```
 EVALUATION SEED=3
 ```
-
+std_reward 430.60648842936126
+mean_reward -150.7913526166676
+at target 28
+on tracks 57
+headings_sum 22
+others_sum 58
+bounds_sum 14
+num total episodes 100
+distances 1.5115976146341656
+runway_angle_errors (all) 56.39218103547068
+success total 60
+success 0.6
 ```
+
+Avarage: 0.58
+
 # Next Steps:
 - Adapt range for wind to -100 to 100
