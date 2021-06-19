@@ -399,7 +399,8 @@ TD3_guidance-continuous-v0_2021-06-18_12-51-52ezhy0f9e
 ### Example images in the end of training (10)
 
 ### Description
-
+Evaluation performs not good. Around 28 % for Seed 4 on evaluation seed 1
+Even the checkpoint from experiment_wind 5301 performs better then the one from experiment_wind_2
 
 # Evaluation:
 
@@ -410,7 +411,7 @@ TRAINING SEED=4 (Colab):
 
 EVALUATION SEED=1
 ```
-
+Around 0.28
 ```
 EVALUATION SEED=2
 ```
@@ -421,6 +422,24 @@ EVALUATION SEED=3
 
 ```
 
-Avarage: 
+- checkpoint 6501
+SEED: 1
+```
+std_reward 363.727817351351
+mean_reward -209.1165979783278
+at target 6
+on tracks 20
+headings_sum 6
+others_sum 61
+bounds_sum 33
+num total episodes 100
+distances 3.0292748770879157
+runway_angle_errors (all) 113.61957333552695
+success total 20
+success 0.2
+```
+
+checkpoint 5301 from experiment_wind (NOT experiment_wind_2): around 38 %
+
 
 # Next Steps:
