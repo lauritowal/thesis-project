@@ -12,8 +12,11 @@ experiment_height
 # tensorboard / ray results: 
 See google colab: TD3_guidance-continuous-v0_2021-06-20_09-30-149abgf385
 
+
 # initial conditions
 ```
+    MAX_HEIGHT_FT = 9000
+
     def _get_initial_conditions(self):
         return {
             # TODO: better min back to 100-500? Seems better for initial training...
@@ -279,10 +282,13 @@ Number of steps:  around
 "seed": 4 (Colab)
 TD3_guidance-continuous-v0_2021-06-20_09-30-149abgf385
 
+
 ### Example images in the end of training (10)
 
 ### Description
-
+It forgets what it learned after some time...
+Performs terribly after 5M --> 0%.
+For very heigh starting positions it just goes down in the wrong direction "on track" --> but away from target.
 
 # Evaluation:
 
@@ -291,11 +297,22 @@ SEED=3
 TRAINING SEED=4 (Colab):
 - TD3_guidance-continuous-v0_2021-06-20_09-30-149abgf385
 
-- checkpoint --> ####
+- checkpoint --> 5801 
 
 EVALUATION SEED=1
 ```
-
+std_reward 261.4709767865937
+mean_reward -257.44575349594936
+at target 0
+on tracks 0
+headings_sum 0
+others_sum 4
+bounds_sum 96
+num total episodes 100
+distances 8.289863261217974
+runway_angle_errors (all) 170.36714215647237
+success total 0
+success 0.0
 ```
 EVALUATION SEED=2
 ```
@@ -306,4 +323,6 @@ EVALUATION SEED=3
 
 ```
 # Next Steps:
-better initial height min back to 100-500ft? Seems better for initial training...
+- better initial height min back to 100-500ft? Seems better for initial training...
+- Set max to 5000
+-
