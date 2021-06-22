@@ -238,38 +238,42 @@ TD3
 Rllib
 ## Algorithm Hyperparams
 ```
-    custom_config = {
+custom_config = {
         "lr": 0.0001, # tune.grid_search([0.01, 0.001, 0.0001]),
         "framework": "torch",
         "callbacks": CustomCallbacks,
         "log_level": "WARN",
         "evaluation_interval": 20,
         "evaluation_num_episodes": 10,
-        "num_gpus": 0,
-        "num_workers": 1,
+        "num_gpus": 1,
+        # "num_workers": 1,
         "num_envs_per_worker": 3,
         "seed": SEED,
+        "evaluation_config": {
+            "explore": False
+        },
+        "evaluation_num_workers": 1,
         "env_config": {
-            "jsbsim_path": "/Users/walter/thesis_project/jsbsim",
-            "flightgear_path": "/Users/walter/FlightGear.app/Contents/MacOS/",
+            "jsbsim_path": JSBSIM_PATH_DRIVE,
+            "flightgear_path": "",
             "aircraft": cessna172P,
             "agent_interaction_freq": 5,
             "target_radius": 100 / 1000,
-            "max_distance_km": 4,
-            "max_target_distance_km": 2,
+
+
+            "max_distance_km": None, # ---> Set to None to increase max_distance_km
+
+
+            "max_target_distance_km": 2, 
             "max_episode_time_s": 60 * 5,
             "phase": 0,
             "render_progress_image": False,
             "render_progress_image_path": './data',
             "offset": 0,
-            "seed": SEED,
             "evaluation": False,
-        },
-        "evaluation_config": {
-            "explore": False
-        },
-        "evaluation_num_workers": 1,
-    }
+            "seed": SEED,
+        }
+}
 ```
 
 
