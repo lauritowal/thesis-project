@@ -2,25 +2,25 @@
 Experiment Date: 20 June 2021, Time: 11:41
 ## What is the experiment about
 
-Set GuidanceEnv.MAX_HEIGHT_FT to 9000 
+Set GuidanceEnv.MAX_HEIGHT_FT to 5000 
 --> Try to see if agent learns to get to the target also when starting heigher...
 
+Set max_distance_km back to 4
 
 # corresponding branch
-experiment_height
+experiment_height_2
 
 # tensorboard / ray results: 
-See google colab: TD3_guidance-continuous-v0_2021-06-20_09-30-149abgf385
-
+See google colab: TD3_guidance-continuous-v0_2021-06-23_07-08-28k4ozsxw4
 
 # initial conditions
 ```
-    MAX_HEIGHT_FT = 9000
+    MAX_HEIGHT_FT = 5000
 
     def _get_initial_conditions(self):
         return {
             # TODO: better min back to 100-500? Seems better for initial training...
-            prp.initial_altitude_ft: self.np_random.uniform(GuidanceEnv.MAX_HEIGHT_FT / 4, GuidanceEnv.MAX_HEIGHT_FT),
+            prp.initial_altitude_ft: self.np_random.uniform(GuidanceEnv.MIN_HEIGHT_FT, GuidanceEnv.MAX_HEIGHT_FT),
             prp.initial_terrain_altitude_ft: 0.00000001,
             prp.initial_longitude_geoc_deg: self.np_random.uniform(-160, 160), # decreased range to avoid problems close to eqautor at -180 / 180
             prp.initial_latitude_geod_deg: self.np_random.uniform(-70, 70), # decreased range to avoid problems close to poles at -90 / 90
@@ -259,11 +259,7 @@ custom_config = {
             "aircraft": cessna172P,
             "agent_interaction_freq": 5,
             "target_radius": 100 / 1000,
-
-
-            "max_distance_km": None, # ---> Set to None to increase max_distance_km
-
-
+            "max_distance_km": 4, 
             "max_target_distance_km": 2, 
             "max_episode_time_s": 60 * 5,
             "phase": 0,
@@ -290,9 +286,7 @@ TD3_guidance-continuous-v0_2021-06-20_09-30-149abgf385
 ### Example images in the end of training (10)
 
 ### Description
-It forgets what it learned after some time...
-Performs terribly after 5M --> 0%.
-For very heigh starting positions it just goes down in the wrong direction "on track" --> but away from target.
+After setting max_distance_km back to 4 it does peform way better!
 
 # Evaluation:
 
@@ -301,22 +295,22 @@ SEED=3
 TRAINING SEED=4 (Colab):
 - TD3_guidance-continuous-v0_2021-06-20_09-30-149abgf385
 
-- checkpoint --> 5801 
+- checkpoint --> 3601 
 
 EVALUATION SEED=1
 ```
-std_reward 261.4709767865937
-mean_reward -257.44575349594936
-at target 0
-on tracks 0
-headings_sum 0
-others_sum 4
-bounds_sum 96
+std_reward 317.74683654029985
+mean_reward -113.11669894024448
+at target 23
+on tracks 42
+headings_sum 33
+others_sum 54
+bounds_sum 23
 num total episodes 100
-distances 8.289863261217974
-runway_angle_errors (all) 170.36714215647237
-success total 0
-success 0.0
+distances 2.4509740846097854
+runway_angle_errors (all) 85.47222919906159
+success total 42
+success 0.42
 ```
 EVALUATION SEED=2
 ```
