@@ -1,5 +1,5 @@
 # Height
-Experiment Date: 20 June 2021, Time: 11:41
+Experiment Date: 24 June 2021, Time: 14:23
 ## What is the experiment about
 
 Set GuidanceEnv.MAX_HEIGHT_FT to 5000 
@@ -287,6 +287,7 @@ TD3_guidance-continuous-v0_2021-06-20_09-30-149abgf385
 
 ### Description
 After setting max_distance_km back to 4 it does peform way better!
+-Does not to perform that much better with seed 9801 vs 3601
 
 # Evaluation:
 
@@ -318,9 +319,70 @@ EVALUATION SEED=2
 ```
 EVALUATION SEED=3
 ```
-
+std_reward 380.20641342126856
+mean_reward -201.3673690831826
+at target 17
+on tracks 43
+headings_sum 34
+others_sum 54
+bounds_sum 29
+num total episodes 100
+distances 2.7326611424808687
+runway_angle_errors (all) 87.33101533037534
+success total 44
+success 0.44
 ```
+
+- checkpoint --> 9801 
+
+EVALUATION SEED=1
+```
+std_reward 352.0526172623021
+mean_reward -82.62490997281756
+at target 25
+on tracks 43
+headings_sum 28
+others_sum 56
+bounds_sum 19
+num total episodes 100
+distances 2.1539273165659027
+runway_angle_errors (all) 75.20519697586047
+success total 47
+success 0.47
+```
+EVALUATION SEED=2
+```
+std_reward 427.33837647543004
+mean_reward -128.03279639207815
+at target 21
+on tracks 42
+headings_sum 28
+others_sum 62
+bounds_sum 17
+num total episodes 100
+distances 2.1160736751761853
+runway_angle_errors (all) 71.24110230174088
+success total 45
+success 0.45
+```
+EVALUATION SEED=3
+```
+std_reward 407.77788489236525
+mean_reward -156.2633700649247
+at target 17
+on tracks 31
+headings_sum 21
+others_sum 67
+bounds_sum 16
+num total episodes 100
+distances 2.0806569145143787
+runway_angle_errors (all) 82.5898645234719
+success total 34
+success 0.34
+```
+
+
+
+
+
 # Next Steps:
-- better initial height min back to 100-500ft? Seems better for initial training...
-- Set max to 5000
--
