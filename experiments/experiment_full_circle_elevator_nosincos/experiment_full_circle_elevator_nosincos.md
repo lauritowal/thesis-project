@@ -296,12 +296,14 @@ std_reward 328.05389098358137
 mean_reward -83.99268834175919
 at target 62
 on tracks 46
-headings_sum 67
+headings_sum 46
 others_sum 38
 bounds_sum 0
 num total episodes 100
-distances 0.31038647312657897
+distances_global_mean 0.31038647312657897
+distances_on_track_mean 0.09441663347509985
 runway_angle_errors (all) 14.703203343682771
+runway_angle_errors (on track) 4.286847552479082
 success total 67
 success 0.67
 ```
@@ -311,15 +313,16 @@ std_reward 443.60062957423554
 mean_reward -143.94783509720722
 at target 64
 on tracks 61
-headings_sum 67
+headings_sum 71
 others_sum 34
 bounds_sum 2
 num total episodes 100
-distances 0.39986210877495215
+distances_global_mean 0.39986210877495215
+distances_on_track_mean 0.09498260776015166
 runway_angle_errors (all) 18.47888681963449
+runway_angle_errors (on track) 4.726107289241195
 success total 71
 success 0.71
-
 ```
 EVALUATION SEED=3
 ```
@@ -327,15 +330,17 @@ std_reward 409.12386224115266
 mean_reward -139.18037076943298
 at target 62
 on tracks 54
-headings_sum 74
+headings_sum 70
 others_sum 38
 bounds_sum 0
 num total episodes 100
-distances 0.27659839676967996
+distances_global_mean 0.27659839676967996
+distances_on_track_mean 0.11055000964056283
 runway_angle_errors (all) 12.994131153595992
+runway_angle_errors (on track) 4.3071023953631355
 success total 70
 success 0.7
-
 ```
 # Next Steps:
+- Try longer run... 15M episodes 
 - Train other two seeds: 3, 7
