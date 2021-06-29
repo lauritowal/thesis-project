@@ -8,7 +8,8 @@ Removed the sin() / cos() from all angles in action and observation
 experiment_full_circle_elevator_nosincos
 
 # tensorboard / ray results: 
-See google colab: TD3_guidance-continuous-v0_2021-06-26_08-34-403y3x4f42
+See google colab: TD3_guidance-continuous-v0_2021-06-26_08-34-403y3x4f42 (9901 checkpoint)
+TD3_guidance-continuous-v0_2021-06-28_11-18-46q1pl2fw5 (18102 checkpoint)
 
 # generate target position 
     def _generate_random_target_position(self) -> (CartesianPosition, float):
@@ -267,6 +268,7 @@ Number of steps:  around 10 M
 # Seed
 "seed": 4 (Colab)
 TD3_guidance-continuous-v0_2021-06-26_08-34-403y3x4f42
+TD3_guidance-continuous-v0_2021-06-28_11-18-46q1pl2fw5 (18102 checkpoint)
 
 ### Example images in the end of training (10)
 
@@ -289,6 +291,8 @@ SEED=3
 TRAINING SEED=4 (Colab):
 - TD3_guidance-continuous-v0_2021-06-26_08-34-403y3x4f42
 - checkpoint 9901
+
+TD3_guidance-continuous-v0_2021-06-28_11-18-46q1pl2fw5 (18102 checkpoint)
 
 EVALUATION SEED=1
 ```
@@ -341,6 +345,65 @@ runway_angle_errors (on track) 4.3071023953631355
 success total 70
 success 0.7
 ```
+
+TRAINING SEED=4 (Colab):
+- TD3_guidance-continuous-v0_2021-06-26_08-34-403y3x4f42
+- checkpoint 18102 (restored and continued from checkpoint 9901)
+
+EVALUATION SEED=1
+```
+std_reward 330.55382959186437
+mean_reward -91.8633373943261
+at target 77
+on tracks 82
+headings_sum 85
+others_sum 23
+bounds_sum 0
+num total episodes 100
+distances_global_mean 0.15875109134680665
+distances_on_track_mean 0.10485365630921112
+runway_angle_errors (all) 15.578021766303078
+runway_angle_errors (on track) 11.965882926511382
+success total 85
+success 0.85
+```
+
+EVALUATION SEED=2
+```
+std_reward 404.233319437487
+mean_reward -136.75364777148047
+at target 72
+on tracks 76
+headings_sum 81
+others_sum 28
+bounds_sum 0
+num total episodes 100
+distances_global_mean 0.29352448366489386
+distances_on_track_mean 0.11397173925187143
+runway_angle_errors (all) 18.189484895818964
+runway_angle_errors (on track) 12.699177564392986
+success total 81
+success 0.81
+```
+EVALUATION SEED=3
+```
+std_reward 373.28571073930834
+mean_reward -173.1808436157436
+at target 70
+on tracks 74
+headings_sum 78
+others_sum 30
+bounds_sum 0
+num total episodes 100
+distances_global_mean 0.2151672474840204
+distances_on_track_mean 0.1246633611884744
+runway_angle_errors (all) 17.671178427716512
+runway_angle_errors (on track) 12.70653390236578
+success total 78
+success 0.78
+```
+
+
 # Next Steps:
-- Try longer run... 15M episodes 
+- Train even longer --> there is still growth potential!
 - Train other two seeds: 3, 7
