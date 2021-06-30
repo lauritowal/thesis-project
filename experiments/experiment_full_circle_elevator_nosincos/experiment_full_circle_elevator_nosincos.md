@@ -281,7 +281,9 @@ But maybe just the counting is bad in newest evaluation... check again.
 
 ### Description
 
-checkpoint 3501 performs pretty good. See evaluation
+checkpoint 9901 performs pretty good without sin/cos, but still not as good as 9901 with sin/cos.
+checkpoint 18102 however reaches around 81 %
+Also Heading somes are pretty high without sin/cos
 
 
 # Evaluation:
