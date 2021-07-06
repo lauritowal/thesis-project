@@ -300,8 +300,10 @@ headings_sum 41
 others_sum 70
 bounds_sum 3
 num total episodes 100
-distances 0.9398786355578553
+distances_global_mean 0.9398786355578553
+distances_on_track_mean 0.5294629610953762
 runway_angle_errors (all) 41.79080467354642
+runway_angle_errors (on track) 9.654466084742477
 success total 79
 success 0.79
 ```
@@ -311,12 +313,14 @@ std_reward 427.72264339700973
 mean_reward -80.30684487158031
 at target 18
 on tracks 73
-headings_sum 35
+headings_sum 33
 others_sum 74
 bounds_sum 8
 num total episodes 100
-distances 1.1912377129483516
+distances_global_mean 1.1912377129483516
+distances_on_track_mean 0.6679094018992245
 runway_angle_errors (all) 47.039743878120554
+runway_angle_errors (on track) 10.233336692238822
 success total 74
 success 0.74
 ```
@@ -326,12 +330,14 @@ std_reward 413.7289944107362
 mean_reward -79.40880049180339
 at target 17
 on tracks 78
-headings_sum 46
+headings_sum 45
 others_sum 80
 bounds_sum 3
 num total episodes 100
-distances 0.8951124003907419
+distances_global_mean 0.8951124003907419
+distances_on_track_mean 0.49920552272313556
 runway_angle_errors (all) 38.80003455479103
+runway_angle_errors (on track) 8.418079061933039
 success total 78
 success 0.78
 ```
