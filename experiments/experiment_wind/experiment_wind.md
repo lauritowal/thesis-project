@@ -328,7 +328,6 @@ Removing the penalty for height seems to make the result better.
 # Evaluation:
 
 TRAINING SEED=4 (Colab):
-- TD3_guidance-continuous-v0_2021-06-14_13-46-260fmowqi_
 - checkpoint 5301
 
 EVALUATION SEED=1
