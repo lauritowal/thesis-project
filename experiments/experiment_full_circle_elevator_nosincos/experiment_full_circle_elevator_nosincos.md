@@ -288,13 +288,13 @@ Also Heading somes are pretty high without sin/cos
 
 # Evaluation:
 
+- TD3_guidance-continuous-v0_2021-06-26_08-34-403y3x4f42
 SEED=3
 
 TRAINING SEED=4 (Colab):
 - TD3_guidance-continuous-v0_2021-06-26_08-34-403y3x4f42
 - checkpoint 9901
 
-TD3_guidance-continuous-v0_2021-06-28_11-18-46q1pl2fw5 (18102 checkpoint)
 
 EVALUATION SEED=1
 ```
@@ -349,7 +349,8 @@ success 0.7
 ```
 
 TRAINING SEED=4 (Colab):
-- TD3_guidance-continuous-v0_2021-06-26_08-34-403y3x4f42
+TD3_guidance-continuous-v0_2021-06-28_11-18-46q1pl2fw5 (18102 checkpoint)
+
 - checkpoint 18102 (restored and continued from checkpoint 9901)
 
 EVALUATION SEED=1
