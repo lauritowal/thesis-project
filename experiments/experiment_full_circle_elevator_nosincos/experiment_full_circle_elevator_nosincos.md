@@ -267,8 +267,15 @@ Number of steps:  around 10 M
 
 # Seed
 "seed": 4 (Colab)
-TD3_guidance-continuous-v0_2021-06-26_08-34-403y3x4f42
+TD3_guidance-continuous-v0_2021-06-26_08-34-403y3x4f42 (9901 episodes)
 TD3_guidance-continuous-v0_2021-06-28_11-18-46q1pl2fw5 (18102 checkpoint)
+
+"seed": 3
+TD3_guidance-continuous-v0_2021-07-24_22-54-2108w_5fiq (around 10M)
+
+"seed": 7
+TD3_guidance-continuous-v0_2021-07-23_16-44-36wz9_dn8_ (around 10M)
+
 
 ### Example images in the end of training (10)
 
