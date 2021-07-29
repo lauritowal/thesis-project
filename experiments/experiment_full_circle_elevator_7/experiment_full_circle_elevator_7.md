@@ -270,9 +270,13 @@ Number of episodes: 10.000
 Number of steps:  around 10 M
 
 
-# Seed
+# Seeds
 "seed": 4 (Colab)
 TD3_guidance-continuous-v0_2021-06-14_13-46-260fmowqi_
+
+"Seed": 3 (Colab)
+TD3_guidance-continuous-v0_2021-07-28_13-48-49dqb89uqy
+
 
 ### Example images in the end of training (10)
 
@@ -285,6 +289,9 @@ Removing the penalty for height seems to make the result better.
 # Evaluation:
 
 SEED=3
+TD3_guidance-continuous-v0_2021-07-28_13-48-49dqb89uqy (Number of Episodes: ###)
+...
+
 
 TRAINING SEED=4 (Colab):
 - TD3_guidance-continuous-v0_2021-06-14_13-46-260fmowqi_
