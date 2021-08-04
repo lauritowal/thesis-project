@@ -277,6 +277,9 @@ TD3_guidance-continuous-v0_2021-06-14_13-46-260fmowqi_
 "Seed": 3 (Colab)
 TD3_guidance-continuous-v0_2021-07-28_13-48-49dqb89uqy
 
+"Seed": 7 (Colab)
+TD3_guidance-continuous-v0_2021-08-03_09-58-56ne15fcfj
+
 
 ### Example images in the end of training (10)
 
