@@ -386,3 +386,29 @@ success 0.78
 - Train other two seeds: 3, 7
 - Try to remove exp for reward again and see if it performs better
 - `reward_track = 1 # Maybe diff_track * 2 instead of 1`
+
+# MEAN RESULTS 
+Agents trained with seeds: 3,4,7
+Evaluated with seeds: 1,2,3
+
+Evaluation with 
+{   'alphas_mean': 5.404746315253716,
+    'altitude_rates_mean': -14.779703055197338,
+    'at_targets_sum': 21.88888888888889,
+    'bounds_sum': 18.333333333333332,
+    'distances_global_mean': 1.658770320265545,
+    'distances_on_track_mean': 0.3617349925354919,
+    'gammas_mean': 4.222633643141527,
+    'ground_speeds_mean': 111.45890804241651,
+    'headings_sum': 37.666666666666664,
+    'mean_reward': -110.5277000950363,
+    'on_tracks_sum': 55.55555555555556,
+    'others_sum': 59.77777777777778,
+    'pitches_mean': -1.1537468112072748,
+    'runway_angle_errors_mean': 62.63662893706391,
+    'runway_angle_errors_on_track_mean': 7.938625808788716,
+    'speed_mean': 111.09320481080744,
+    'std_reward': 384.0527039151624,
+    'success': 0.5700000000000001,
+    'successes': 57.0
+}
