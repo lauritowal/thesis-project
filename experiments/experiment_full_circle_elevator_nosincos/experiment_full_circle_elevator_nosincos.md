@@ -472,3 +472,28 @@ success 0.78
 # Next Steps:
 - Train even longer --> there is still growth potential!
 - Train other two seeds: 3, 7
+
+# EVALUATION WITH THREE SEEDS 3, 7, 4:
+Trained with Seeds: 3, 7, 4
+All three were then evaluated with seeds 1,2,3
+
+{   'alphas_mean': 5.3559601061354645,
+    'altitude_rates_mean': -13.270174992438847,
+    'at_targets_sum': 44.22222222222222,
+    'bounds_sum': 1.2222222222222223,
+    'distances_global_mean': 0.562454372483438,
+    'distances_on_track_mean': 0.21479248795389683,
+    'gammas_mean': 4.305062457777928,
+    'ground_speeds_mean': 112.14094553117039,
+    'headings_sum': 56.0,
+    'mean_reward': -107.59469569647791,
+    'on_tracks_sum': 62.55555555555556,
+    'others_sum': 54.55555555555556,
+    'pitches_mean': -1.0440083492147465,
+    'runway_angle_errors_mean': 20.23300852250059,
+    'runway_angle_errors_on_track_mean': 5.765121947731256,
+    'speed_mean': 112.14898575461433,
+    'std_reward': 412.65826964918085,
+    'success': 0.7066666666666666,
+    'successes': 70.66666666666667
+    }
