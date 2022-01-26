@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='thesis_project',
     version='',
-    packages=['gym', 'jsbsim', 'gym-jsbsim'],
+    packages=['gym', 'cython', 'numpy', 'jsbsim', 'gym-jsbsim'],
     url='',
     license='',
     author='walter',
