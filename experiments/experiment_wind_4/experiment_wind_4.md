@@ -1,10 +1,102 @@
-Seed: 
-See: 
-Checkpoint: 10001
-
-
 # Evaluation
 
+# New evaluation
+Checkpoint: 10001
+### seeds 1,2,3
+## Phase 1
+std_reward_seed 286.40134576770924
+mean_reward_seed -49.00295533492524
+gammas_mean_seed 4.29952643151966
+pitches_mean_seed -1.1335235525444092
+ground_speeds_mean_seed 111.43043997774176
+alphas_mean_seed 5.452559871400349
+runway_angle_errors_mean_seed 41.64101400318223
+runway_angle_errors_std_seed 59.086130197848185
+speed_mean_seed 111.3354689953806
+runway_angle_errors_on_track_mean_seed 6.975136017087585
+runway_angle_errors_on_track_std_seed 9.575022976488649
+at_targets_sum_seed 37.0
+on_tracks_sum_seed 44.666666666666664
+headings_sum_seed 39.666666666666664
+bounds_sum_seed 4.0
+others_sum_seed 59.0
+distances_global_mean_seed 1.0539894195471433
+distances_global_std_seed 1.2840552619790264
+distances_on_track_mean_seed 0.17618907131038744
+distances_on_track_std_seed 0.2191346303372256
+success 0.5366666666666666
+
+## Phase 2
+std_reward_seed 330.5209283588245
+mean_reward_seed -99.70166076449804
+gammas_mean_seed 4.350492643914634
+pitches_mean_seed -1.1135257553125646
+ground_speeds_mean_seed 110.77824239309565
+alphas_mean_seed 5.473030949742547
+runway_angle_errors_mean_seed 39.138255944000015
+runway_angle_errors_std_seed 55.32953942609716
+speed_mean_seed 110.29508226455773
+runway_angle_errors_on_track_mean_seed 7.749058436180644
+runway_angle_errors_on_track_std_seed 8.789903011080302
+at_targets_sum_seed 30.333333333333332
+on_tracks_sum_seed 42.333333333333336
+headings_sum_seed 34.333333333333336
+bounds_sum_seed 4.666666666666667
+others_sum_seed 65.0
+distances_global_mean_seed 1.2086904047032057
+distances_global_std_seed 1.2651960969406242
+distances_on_track_mean_seed 0.2311879003749909
+distances_on_track_std_seed 0.2845630117940165
+success 0.48
+
+## Phase 3
+std_reward_seed 374.83660557260583
+mean_reward_seed -159.8928825461764
+gammas_mean_seed 4.2712760805764525
+pitches_mean_seed -1.162937948679503
+ground_speeds_mean_seed 110.67993649254703
+alphas_mean_seed 5.434214029255955
+runway_angle_errors_mean_seed 33.239096269303104
+runway_angle_errors_std_seed 48.29919356544096
+speed_mean_seed 109.256457810298
+runway_angle_errors_on_track_mean_seed 8.008483025764427
+runway_angle_errors_on_track_std_seed 8.883474032090867
+at_targets_sum_seed 22.666666666666668
+on_tracks_sum_seed 42.333333333333336
+headings_sum_seed 29.333333333333332
+bounds_sum_seed 2.3333333333333335
+others_sum_seed 75.0
+distances_global_mean_seed 1.2281194160961733
+distances_global_std_seed 1.1187352531658312
+distances_on_track_mean_seed 0.29814758622687787
+distances_on_track_std_seed 0.3189666632213862
+success 0.43999999999999995
+
+## Phase 4
+std_reward_seed 370.46297826015626
+mean_reward_seed -183.8919722019732
+gammas_mean_seed 4.281917940890165
+pitches_mean_seed -1.1916615143630789
+ground_speeds_mean_seed 108.65028095228644
+alphas_mean_seed 5.477949263089691
+runway_angle_errors_mean_seed 38.924531757858006
+runway_angle_errors_std_seed 48.92526161108015
+speed_mean_seed 106.12312840598044
+runway_angle_errors_on_track_mean_seed 12.217328854448132
+runway_angle_errors_on_track_std_seed 11.399587156795524
+at_targets_sum_seed 15.0
+on_tracks_sum_seed 33.333333333333336
+headings_sum_seed 17.666666666666668
+bounds_sum_seed 4.0
+others_sum_seed 81.0
+distances_global_mean_seed 1.3988918693870895
+distances_global_std_seed 1.1654314730300275
+distances_on_track_mean_seed 0.3992629895679645
+distances_on_track_std_seed 0.4147418067766602
+success 0.35333333333333333
+
+# Old Evaluation modus
+Checkpoint: 10001
 ## Phase 0
 
 ### Seed 1
